@@ -15,10 +15,10 @@ app.config(function($routeProvider){
         templateUrl : "./component/blog-single.html"
     })
     .when("/login",{
-        templateUrl : "./component/login.html"
+        templateUrl : "./component/sign-in.html"
     })
     .when("/register",{
-        templateUrl : "./component/register.html"
+        templateUrl : "./component/sign-up.html"
     })
     .when("/changepass",{
         templateUrl : "./component/changepass.html"
