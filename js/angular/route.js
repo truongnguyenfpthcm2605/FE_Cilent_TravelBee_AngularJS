@@ -9,7 +9,7 @@ app.config(function($routeProvider){
         templateUrl : "./component/contact.html"
     })
     .when("/tour",{
-        templateUrl : "./payment.html"
+        templateUrl : "./component/payment.html"
     })
     .when("/blogsingle",{
         templateUrl : "./component/blog-single.html"
