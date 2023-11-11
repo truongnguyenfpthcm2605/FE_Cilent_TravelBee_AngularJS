@@ -7,15 +7,14 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
-	integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/ticket.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -27,16 +26,34 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/login.css">
 	<link rel="stylesheet" href="css/information.css">
-	
 
 
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+ 		<!-- Bootstrap -->
+ 		
+
+ 		<!-- Slick -->
+ 		<link type="text/css" rel="stylesheet" href="css1/slick.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css1/slick-theme.css"/>
+
+ 		<!-- nouislider -->
+ 		<link type="text/css" rel="stylesheet" href="css1/nouislider.min.css"/>
+
+ 		<!-- Font Awesome Icon -->
+ 		<link rel="stylesheet" href="css1/font-awesome.min.css">
+
+ 		<!-- Custom stlylesheet -->
+ 		<link type="text/css" rel="stylesheet" href="css1/style.css"/>
+	<link rel="stylesheet" href="css/test3.css">
 </head>
+
+
 
 <body ng-app="app" ng-controller="homeController">
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar"
 		ng-include="'./component/header.html'">
 	</nav>
-	<!-- END nav -->
 	<main ng-view></main>
 
 	<footer class="ftco-footer bg-bottom ftco-no-pt" style="background-image: url(images/bg_3.jpg);"
@@ -51,6 +68,7 @@
 			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
 				stroke="#F96D00" />
 		</svg></div>
+
 	<!-- Messenger Plugin chat Code -->
     <div id="fb-root"></div>
 
@@ -81,6 +99,7 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
+
 	<script>
 		let app = angular.module("app", ['ngRoute'])
 		app.controller("homeController", function ($scope) {
@@ -105,8 +124,14 @@
 	<script src="js/scrollax.min.js"></script>
 	<script src="js/main.js"></script>
 
-
-
+	<script src="js/jquery.min.js"></script>
+	<!-- js tour -->
+		
+		<script src="js1/slick.min.js"></script>
+		<script src="js1/nouislider.min.js"></script>
+		<script src="js1/jquery.zoom.min.js"></script>
+		<script src="js1/main.js"></script>
+	<script src="js/image.js"></script>
 
 </body>
 
