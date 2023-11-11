@@ -33,7 +33,129 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+<style>
+	
 
+.main-image {
+  height: 80vh;
+  /* Sử dụng chiều cao của viewport */
+  width: auto;
+  /* Đảm bảo tỷ lệ khung hình bảo toàn */
+  object-fit: cover;
+  /* Hiển thị ảnh bên trong khung hình mà không biến dạng */
+  transition: opacity 0.3s;
+}
+
+.thumbnail-image {
+  max-height: 100px;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.thumbnail-image.active {
+  opacity: 1;
+}
+
+.thumbnail-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  padding-left: 50px;
+}
+
+
+.form {
+  position:fixed ;
+top: 200px; /* Điều chỉnh khoảng cách từ đỉnh trình duyệt */
+z-index: 100; /* Đảm bảo form hiển thị trên các phần tử khác */
+background-color: #fff; /* Màu nền của form */
+padding: 20px; /* Khoảng cách giữa form và nội dung bên trong */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ cho form */
+}
+
+
+
+.form label,
+.form input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form input[type="text"],
+.form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form button {
+  display: block;
+  width: 40%;
+  padding: 10px;
+  margin: 20px 30%;
+  background-color: rgb(228, 19, 19);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+.left-column {
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+}
+
+.right-column {
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+
+
+input[type="date"] {
+  padding: 8px;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #646161;
+}
+
+.schedule {
+background-color: #f5f5f5;
+padding: 20px;
+border-radius: 5px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+</style>
     </head>
 	<body>
 		<!-- SECTION -->
@@ -43,47 +165,51 @@
 				<!-- row -->
 				<div class="row">
 					<!-- Product main img -->
-					<div class="col-md-5 col-md-push-2">
-						<div id="product-main-img">
-							<div class="product-preview">
-								<img src="images/person_1.jpg" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="images/person_2.jpg" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="images/person_3.jpg" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="images/person_4.jpg" alt="">
-							</div>
+					<div class="container">
+						<div class="row">
+						  <div class="col-md-12">
+							<img id="mainImage" class="img-fluid main-image animated" src="images/communication-4871245_1280.webp" alt="Image">
+							<a class="carousel-control-prev" href="#" role="button" onclick="prevImage()">
+							  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							  <span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#" role="button" onclick="nextImage()">
+							  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+							  <span class="sr-only">Next</span>
+							</a>
+						  </div>
 						</div>
-					</div>
+						<div class="row mt-3">
+						  <div class="col-md-12">
+							<div class="container" style="display: flex; justify-content: space-evenly;">
+							  <div class="col thumbnail-column">
+								<img class="img-fluid thumbnail-image active" src="images/communication-4871245_1280.webp" alt="Thumbnail 1"
+								  onclick="changeImage('images/communication-4871245_1280.webp')">
+							  </div>
+							  <div class="col thumbnail-column">
+								<img class="img-fluid thumbnail-image" src="images/pt2.jpg" alt="Thumbnail 2"
+								  onclick="changeImage('images/pt2.jpg')">
+							  </div>
+							  <div class="col thumbnail-column">
+								<img class="img-fluid thumbnail-image" src="images/pt3.jpg" alt="Thumbnail 3"
+								  onclick="changeImage('images/pt3.jpg')">
+							  </div>
+							  
+							  <div class="col thumbnail-column">
+								<img class="img-fluid thumbnail-image" src="images/pt4.jpg" alt="Thumbnail 3"
+								  onclick="changeImage('images/pt4.jpg')">
+							  </div>
+							  <div class="col thumbnail-column">
+								<img class="img-fluid thumbnail-image" src="images/pt5.jpg" alt="Thumbnail 3"
+								  onclick="changeImage('images/pt5.jpg')">
+							  </div>
+							</div>
+						  </div>
+						</div>
+					  </div>
 					<!-- /Product main img -->
 
-					<!-- Product thumb imgs -->
-					<div class="col-md-2  col-md-pull-5">
-						<div id="product-imgs">
-							<div class="product-preview">
-								<img src="images/person_1.jpg" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="images/person_2.jpg" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="images/person_3.jpg" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="images/person_4.jpg" alt="">
-							</div>
-						</div>
-					</div>
+					
 					<!-- /Product thumb imgs -->
 
 					<!-- Product details -->
@@ -551,7 +677,77 @@
 		</div>
 		<!-- /NEWSLETTER -->
 
-		
+		<script >
+			var currentImageIndex = 0;
+  var imageUrls = ['images/destination-2.jpg', 'images/destination-3.jpg', 'images/destination-4.jpg', 'images/destination-5.jpg', 'images/destination-6.jpg'];
+
+  function changeImage(imageUrl) {
+    var mainImage = document.getElementById('mainImage');
+    mainImage.classList.remove('animate__fadeIn');
+    mainImage.classList.add('animate__fadeOut');
+    setTimeout(function() {
+      mainImage.src = imageUrl;
+      mainImage.classList.remove('animate__fadeOut');
+      mainImage.classList.add('animate__fadeIn');
+    }, 500);
+
+    var thumbnailImages = document.getElementsByClassName('thumbnail-image');
+    for (var i = 0; i < thumbnailImages.length; i++) {
+      thumbnailImages[i].classList.remove('active');
+    }
+
+    var selectedThumbnail = event.target;
+    selectedThumbnail.classList.add('active');
+
+    currentImageIndex = imageUrls.indexOf(imageUrl);
+  }
+
+  function nextImage() {
+    var mainImage = document.getElementById('mainImage');
+    mainImage.classList.remove('animate__fadeIn');
+    mainImage.classList.add('animate__fadeOut');
+    setTimeout(function() {
+      currentImageIndex++;
+      if (currentImageIndex >= imageUrls.length) {
+        currentImageIndex = 0;
+      }
+      var imageUrl = imageUrls[currentImageIndex];
+      mainImage.src = imageUrl;
+      mainImage.classList.remove('animate__fadeOut');
+      mainImage.classList.add('animate__fadeIn');
+  
+      var thumbnailImages = document.getElementsByClassName('thumbnail-image');
+      for (var i = 0; i < thumbnailImages.length; i++) {
+        thumbnailImages[i].classList.remove('active');
+      }
+  
+      thumbnailImages[currentImageIndex].classList.add('active');
+    }, 500);
+  }
+
+  function prevImage() {
+    var mainImage = document.getElementById('mainImage');
+    mainImage.classList.remove('animate__fadeIn');
+    mainImage.classList.add('animate__fadeOut');
+    setTimeout(function() {
+      currentImageIndex--;
+      if (currentImageIndex < 0) {
+        currentImageIndex = imageUrls.length - 1;
+      }
+      var imageUrl = imageUrls[currentImageIndex];
+      mainImage.src = imageUrl;
+      mainImage.classList.remove('animate__fadeOut');
+      mainImage.classList.add('animate__fadeIn');
+
+      var thumbnailImages = document.getElementsByClassName('thumbnail-image');
+      for (var i = 0; i < thumbnailImages.length; i++) {
+        thumbnailImages[i].classList.remove('active');
+      }
+
+      thumbnailImages[currentImageIndex].classList.add('active');
+    }, 500);
+  }
+		</script>
 
 		<!-- jQuery Plugins -->
 		<script src="js1/jquery.min.js"></script>
