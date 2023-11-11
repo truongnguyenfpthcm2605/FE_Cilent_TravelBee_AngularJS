@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+	<link rel="icon" type="image/png" href="/images/logo.png">
 	<title>Travel Bee</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -68,13 +69,44 @@
 				stroke="#F96D00" />
 		</svg></div>
 
-	
+	<!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "162482383617088");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v18.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
 	<script>
 		let app = angular.module("app", ['ngRoute'])
 		app.controller("homeController", function ($scope) {
 			$scope.name = 'Truong'
 		})
 	</script>
+
 	<script src="js/customjs/login.js"></script>
 	<script src="js/angular/route.js"></script>
 	<script src="js/angular/mainController.js"></script>
@@ -91,6 +123,7 @@
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/scrollax.min.js"></script>
 	<script src="js/main.js"></script>
+
 	<script src="js/jquery.min.js"></script>
 	<!-- js tour -->
 		
@@ -99,6 +132,7 @@
 		<script src="js1/jquery.zoom.min.js"></script>
 		<script src="js1/main.js"></script>
 	<script src="js/image.js"></script>
+
 </body>
 
 </html>
