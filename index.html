@@ -70,20 +70,20 @@
 		</svg></div>
 
 	<!-- Messenger Plugin chat Code -->
-    <div id="fb-root"></div>
+    <!-- <div id="fb-root"></div>
 
-    <!-- Your Plugin chat code -->
-    <div id="fb-customer-chat" class="fb-customerchat">
+    <-- Your Plugin chat code -->
+    <!-- <div id="fb-customer-chat" class="fb-customerchat">
     </div>
 
     <script>
       var chatbox = document.getElementById('fb-customer-chat');
       chatbox.setAttribute("page_id", "162482383617088");
       chatbox.setAttribute("attribution", "biz_inbox");
-    </script>
+    </script>  -->
 
     <!-- Your SDK code -->
-    <script>
+    <!-- <script>
       window.fbAsyncInit = function() {
         FB.init({
           xfbml            : true,
@@ -98,15 +98,18 @@
         js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-    </script>
+    </script> -->
 
 	<script>
 		let app = angular.module("app", ['ngRoute'])
-		app.controller("homeController", function ($scope) {
-			$scope.name = 'Truong'
+		app.controller("homeController", function ($scope,$rootScope) {
+			$rootScope.url = "http://localhost:8080"
+			
 		})
 	</script>
-
+	<script src="js/angular/mainController.js"></script>
+	<script src="js/angular/tourController.js"></script>
+	<script src="js/angular/feedbackController.js"></script>
 	<script src="js/customjs/login.js"></script>
 	<script src="js/angular/route.js"></script>
 	<script src="js/angular/mainController.js"></script>

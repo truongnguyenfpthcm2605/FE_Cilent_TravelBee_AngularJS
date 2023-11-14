@@ -1,16 +1,18 @@
-<section class=" hero-wrap-2 js-fullheight" style="background-image: url('images/bg_4.jpg');height: 40rem; background-color: rgba(0, green, blue, alpha);" >
+<section class=" hero-wrap-2 js-fullheight"
+  style="background-image: url('images/bg_4.jpg');height: 40rem; background-color: rgba(0, green, blue, alpha);">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-      <div class="col-md-9  pb-5 text-center" style="margin-top: 30rem;" >
-         <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Trang Chủ <i class="fa fa-chevron-right"></i></a></span> <span>Liên Hệ<i class="fa fa-chevron-right"></i></span></p>
-         <h1 class="mb-0 bread">Liên Hệ</h1>
-     </div>
- </div>
-</div>
+      <div class="col-md-9  pb-5 text-center" style="margin-top: 30rem;">
+        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Trang Chủ <i
+                class="fa fa-chevron-right"></i></a></span> <span>Liên Hệ<i class="fa fa-chevron-right"></i></span></p>
+        <h1 class="mb-0 bread">Liên Hệ</h1>
+      </div>
+    </div>
+  </div>
 </section>
-<div class="container">
-  
+<div class="container" ng-controller="feedbackController">
+
   <section class="ftco-section ftco-no-pb contact-section mb-4">
     <div class="container">
       <div class="row d-flex contact-info">
@@ -19,8 +21,8 @@
             <div class="icon d-flex align-items-center justify-content-center">
               <span class="fa fa-map-marker"></span>
             </div>
-            <h3 class="mb-2">Address</h3>
-            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            <h3 class="mb-2">Địa Chỉ</h3>
+            <p>Công viên phần mềm Quang QTSC Building 1, Trung, P Q.12, Thành phố Hồ Chí Minh, Vietnam</p>
           </div>
         </div>
         <div class="col-md-3 d-flex">
@@ -28,8 +30,8 @@
             <div class="icon d-flex align-items-center justify-content-center">
               <span class="fa fa-phone"></span>
             </div>
-            <h3 class="mb-2">Contact Number</h3>
-            <p><a href="tel://1234567920">+ 1235 2355 98</a></p>
+            <h3 class="mb-2">Điện Thoại Liên Hệ</h3>
+            <p><a href="tel://1234567920">0999999999</a></p>
           </div>
         </div>
         <div class="col-md-3 d-flex">
@@ -37,8 +39,8 @@
             <div class="icon d-flex align-items-center justify-content-center">
               <span class="fa fa-paper-plane"></span>
             </div>
-            <h3 class="mb-2">Email Address</h3>
-            <p><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+            <h3 class="mb-2">Email</h3>
+            <p><a href="mailto:info@yoursite.com">travelbee@gmail.com</a></p>
           </div>
         </div>
         <div class="col-md-3 d-flex">
@@ -46,8 +48,8 @@
             <div class="icon d-flex align-items-center justify-content-center">
               <span class="fa fa-globe"></span>
             </div>
-            <h3 class="mb-2">Website</h3>
-            <p><a href="#">yoursite.com</a></p>
+            <h3 class="mb-2">Hỏi Đáp</h3>
+            <p><a href="https://www.facebook.com/profile.php?id=61553337365112">Mở Liên Kết</a></p>
           </div>
         </div>
       </div>
@@ -58,28 +60,33 @@
     <div class="container">
       <div class="row block-9">
         <div class="col-md-6 order-md-last d-flex">
-          <form action="#" class="bg-light p-5 contact-form">
+          <form class="bg-light p-5 contact-form">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Your Name">
+              <input type="text" class="form-control" placeholder="{{accont_name}}">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Your Email">
+              <input type="text" class="form-control" placeholder="{{account_email}}" ng-model="feedback.email">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Subject">
+              <input type="text" class="form-control" placeholder="Tiêu đề" ng-model="feedback.title">
             </div>
             <div class="form-group">
-              <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+              <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Nội Dung"
+                ng-model="feedback.content"></textarea>
             </div>
             <div class="form-group">
-              <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+              <input type="file" class="form-control" placeholder="Tiêu đề" multiple>
+            </div>
+            <div class="form-group">
+              <input type="button" value="Send Message" ng-click="send()" class="btn btn-primary py-3 px-5">
             </div>
           </form>
-
         </div>
 
         <div class="col-md-6 d-flex">
-          <div id="map" class="bg-white"></div>
+          <iframe style="border-radius: 10px;"
+            src="https://www.google.com/maps/d/u/0/embed?mid=1_TXz_yUSbaDWsQbBNMIwnve73OB-N1k&ehbc=2E312F" width="640"
+            height="600"></iframe>
         </div>
       </div>
     </div>
