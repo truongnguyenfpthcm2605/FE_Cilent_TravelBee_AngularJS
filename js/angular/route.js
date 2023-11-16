@@ -19,7 +19,8 @@ app.config(function($routeProvider){
         templateUrl : "./component/sign-in.html"
     })
     .when("/register",{
-        templateUrl : "./component/sign-up.html"
+        templateUrl : "./component/sign-up.html",
+         controller : 'registerController'
     })
     .when("/changepass",{
         templateUrl : "./component/changepass.html"
