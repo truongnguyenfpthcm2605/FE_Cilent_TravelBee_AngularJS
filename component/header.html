@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container" >
         <a class="navbar-brand" style="width: 25%;" href="index.html"><img style="width: 30%;" src="https://firebasestorage.googleapis.com/v0/b/travel-bee-e0b59.appspot.com/o/logo.png?alt=media&token=9b7bf685-a7ff-49d9-9413-abdeee4cb722" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -10,17 +10,18 @@
                 <li class="nav-item "><a href="index.html" class="nav-link" >Trang Chủ</a></li>
                 <li class="nav-item"><a href="#!tour" class="nav-link"  >Tour</a></li>
                 <li class="nav-item"><a href="#!contact" class="nav-link"  >Liên Hệ</a></li>
-                <li class="nav-item"><a href="#!login" class="nav-link"  >Đăng Nhập</a></li>
-                <li class="nav-item"><a href="#!register" class="nav-link"  >Đăng Ký</a></li>
+                <li ng-if="$root.token ==''" class="nav-item"><a href="#!login" class="nav-link"  >Đăng Nhập</a></li>
+                <li ng-if="$root.token ==''" class="nav-item"><a href="#!register" class="nav-link"  >Đăng Ký</a></li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href=""  id="navbarDropdown" role="button" data-toggle="dropdown" disable aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href=""  ng-if="!!$root.token" id="navbarDropdown" role="button" data-toggle="dropdown" disable aria-haspopup="true" aria-expanded="false">
                       <i class="fa-solid fa-gear" style="margin-right: 5px; font-size: 1rem;"></i>Cài Đặt
                     </a>
                     <div class="dropdown-menu header-drops" aria-labelledby="navbarDropdown" style="background-color: rgba(0, 0, 0, 0.1);" >
                       <a class="dropdown-item" href="#!changepass">Đổi mật khẩu</a>
                       <a class="dropdown-item" href="#!information">Thông tin tài khoản</a>
                       <a class="dropdown-item" href="#!history">Lịch sử mua vé</a>
+                      <a class="dropdown-item" href="" ng-click="logout()">Đăng Xuât</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -32,6 +33,7 @@
                     <a class="dropdown-item" href="#!en"><img src="https://firebasestorage.googleapis.com/v0/b/travel-bee-e0b59.appspot.com/o/united-kingdom.png?alt=media&token=53cf3229-0651-4732-be06-98e1a25f6157"style="width: 20px; margin-right: 5px;" alt="">English</a>
                   </div>
               </li>
+              <li  ng-if="!!$root.token" class="nav-item "><a href="index.html" style="color: orangered; font-weight: bold; " class="nav-link" >{{fullname}}</a></li>
                 
             </ul>
         </div>
