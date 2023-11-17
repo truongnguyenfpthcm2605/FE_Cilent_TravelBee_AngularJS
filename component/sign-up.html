@@ -120,59 +120,83 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form text-left" name="formregister" novalidate>
+              <form role="form text-left" name="formregister">
                 <div class="mb-3">
                   <input type="text" class="form-control" ng-model="register.fullname" placeholder="Name"
-                    aria-label="Name" aria-describedby="email-addon" name="txtfullname">
+                    aria-label="Fullname" aria-describedby="fullname-addon" name="txtfullname" required>
                   <span style="color: red; font-size: 15px;"
-                    ng-show="formregister.txtfullname.$dirty && formregister.txtfullname.$error.required">FullName không được
+                    ng-show="formregister.txtfullname.$dirty && formregister.txtfullname.$error.required">FullName không
+                    được
                     bỏ
                     trống</span>
                 </div>
                 <div class="mb-3">
                   <input type="text" class="form-control" ng-model="register.username" placeholder="Username"
-                    aria-label="Name" aria-describedby="email-addon" name="txtusername">
+                    aria-label="Username" aria-describedby="username-addon" name="txtusername" required>
                   <span style="color: red; font-size: 15px;"
-                    ng-show="formregister.txtusername.$dirty && formregister.txtusername.$error.required">Ussername không được
+                    ng-show="formregister.txtusername.$dirty && formregister.txtusername.$error.required">Ussername
+                    không được
                     bỏ
                     trống</span>
                 </div>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <input type="email" class="form-control" ng-model="register.email" placeholder="Email"
+                      aria-label="Email" aria-describedby="email-addon" name="txtemail" required>
+                  </div>
+                  <div class="col-sm-4" sty>
+                    <button type="button" ng-click="sendEmail()" ng-disabled="formregister.txtsendemail.$invalid"
+                      class="btn bg-gradient-dark w-100 my-2 mb-3">Send</button>
+                  </div>
+                </div>
                 <div class="mb-3">
-                  <input type="email" class="form-control" ng-model="register.email" placeholder="Email"
-                    aria-label="Email" aria-describedby="email-addon" name="txtEmail">
                   <span style="color: red; font-size: 15px;"
-                    ng-show="formregister.txtEmail.$dirty && formregister.txtEmail.$error.email">Nhập sai định dạng
-                    email</span>
-                  <br>
+                    ng-show="formregister.txtemail.$dirty && formregister.txtemail.$error.email">Nhập sai định dạng
+                    email <br></span>
+
                   <span style="color: red; font-size: 15px;"
-                    ng-show="formregister.txtEmail.$dirty && formregister.txtEmail.$error.required">Email không được bỏ
+                    ng-show="formregister.txtemail.$dirty && formregister.txtemail.$error.required">Email không được bỏ
                     trống</span>
                 </div>
                 <div class="mb-3">
                   <input type="password" class="form-control" ng-model="register.password" placeholder="Password"
-                    aria-label="Password" aria-describedby="password-addon" name="txtPassword">
+                    aria-label="Password" aria-describedby="password-addon" name="txtpassword" required>
                   <span style="color: red; font-size: 15px;"
-                    ng-show="formregister.txtPassword.$dirty && formregister.txtPassword.$error.required">Password không được
+                    ng-show="formregister.txtpassword.$dirty && formregister.txtpassword.$error.required">Password không
+                    được
                     bỏ
                     trống</span>
                 </div>
                 <div class="mb-3">
-                  <input type="password" class="form-control" ng-model="register.confirmpass"
-                    placeholder="Confiem Password" aria-label="Confirm Password" aria-describedby="password-addon" name="txtconfirmpass">
+                  <input type="password" class="form-control" ng-model="confirmpass" placeholder="Confirm Password"
+                    aria-label="Confirm Password" aria-describedby="confirmpass-addon" name="txtconfirmpass" required>
                   <span style="color: red; font-size: 15px;"
-                    ng-show="formregister.txtconfirmpass.$dirty && formregister.txtconfirmpass.$error.required">Confirm Password
+                    ng-show="formregister.txtconfirmpass.$dirty && formregister.txtconfirmpass.$error.required">Confirm
+                    Password
                     không được
                     bỏ
                     trống</span>
                 </div>
                 <div class="mb-3">
-                  <input type="date" class="form-control" ng-model="register.birthday"
-                    placeholder="birthday" aria-label="birthday" aria-describedby="password-addon" name="txtbirthday">
+                  <input type="date" class="form-control" ng-model="register.birthday" placeholder="birthday"
+                    aria-label="birthday" aria-describedby="birthday-addon" name="txtbirthday" required>
                   <span style="color: red; font-size: 15px;"
                     ng-show="formregister.txtbirthday.$dirty && formregister.txtbirthday.$error.required">birthday
                     không được
                     bỏ
                     trống</span>
+                </div>
+                <div class="mb-3">
+                  <input type="text" class="form-control" ng-model="verificationCode" placeholder="CODE"
+                    id="verificationCode" name="verificationCode" required>
+                  <span style="color: red; font-size: 15px;"
+                    ng-show="formregister.verificationCode.$dirty && formregister.verificationCode.$error.required">Verification
+                    Code
+                    không được
+                    bỏ
+                    trống</span>
+
+
                 </div>
                 <div class="form-check form-check-info text-left">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
@@ -181,10 +205,11 @@
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="button" ng-click="submitForm()"
-                  ng-disabled="formregister.$invalid" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+                  <button type="button" ng-click="submitForm()" ng-disabled="formregister.$invalid"
+                    class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
                 </div>
-                <p class="text-sm mt-3 mb-0">Already have an account? <a  class="text-dark font-weight-bolder">Sign in</a></p>
+                <p class="text-sm mt-3 mb-0">Already have an account? <a class="text-dark font-weight-bolder">Sign
+                    in</a></p>
               </form>
             </div>
           </div>
