@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get File Name Example</title>
+    <style>
+        /* Ẩn thanh cuộn ngang cho input file */
+        input[type="file"]::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+        input[type="file"] {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        input[type="file"] + label {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Input file và label đối ứng -->
+    <input type="file" name="photo" id="fileInput" style="display: none;">
+    <label for="fileInput">Chọn file</label>
+
+    <script>
+        // Sự kiện khi thay đổi giá trị của input file
+        document.getElementById('fileInput').addEventListener('change', function () {
+            // Lấy tên của tệp đã chọn
+            console.log(this.files[0].name);
+        });
+    </script>
+
+</body>
+</html>
+
+
+

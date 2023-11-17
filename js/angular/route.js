@@ -2,7 +2,7 @@
 app.config(function($routeProvider){
     $routeProvider
     .when("/main",{
-        templateUrl : "./component/main.html",
+        templateUrl : "./component/payment.html",
         controller : 'mainController'
     })
     .when("/contact",{
