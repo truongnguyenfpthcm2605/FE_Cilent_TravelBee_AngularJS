@@ -2,14 +2,13 @@
 app.config(function($routeProvider){
     $routeProvider
     .when("/main",{
-        templateUrl : "./component/payment.html",
-        controller : 'mainController'
+        templateUrl : "./component/qrcodepayment.html",
     })
     .when("/contact",{
         templateUrl : "./component/contact.html"
     })
     .when("/tour",{
-        templateUrl : "./component/tour.html",
+        templateUrl : "./component/tourdetail.html",
         controller : 'tourController'
     })
     .when("/blogsingle",{
