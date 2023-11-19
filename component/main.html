@@ -9,8 +9,9 @@
           <span class="subheading">{{welcome}}</span>
           <h1 class="mb-4">{{title}}</h1>
           <p class="caps">{{travel}}</p>
+          <p class="mb-4">{{ today.name}}, {{today.location}}, <span style="color: rgb(141, 141, 227);">{{today.status}}</span> , {{today.C}} độ C </p>
         </div>
-        <a href="https://vimeo.com/45830194"
+        <a data-toggle="modal" data-target="#exampleModal"
           class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
           <span class="fa fa-play"></span>
         </a>
@@ -344,5 +345,13 @@
     </div>
   </section>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="margin-top: 10%; width: 100%;">
+    <div class="modal-content" style="margin: 0 auto; ">
+      <iframe width="600px" height="315" src="https://www.youtube.com/embed/Qd3JrJcW1C8?si=36rinz7DRoV93FFz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
 
 </div>
