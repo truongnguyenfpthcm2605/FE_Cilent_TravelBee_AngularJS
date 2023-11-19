@@ -1,6 +1,6 @@
 app.controller("qrcodepaymentController", function($scope, $http, $rootScope,$location) {
 
-    $scope.check = 10
+    $scope.check = 60
     let countdownInterval = setInterval(function() {
         $scope.$apply(function() {
             $scope.check--; 

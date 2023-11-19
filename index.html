@@ -118,6 +118,7 @@
 			$rootScope.email = ""
 			$rootScope.token = ""
 			$rootScope.authorities = []
+			$scope.today = {}
 
 			$scope.logout = function () {
 				$http.get($rootScope.url + "/api/v1/auth/logout")
