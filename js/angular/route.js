@@ -2,7 +2,8 @@
 app.config(function($routeProvider){
     $routeProvider
     .when("/main",{
-        templateUrl : "./component/qrcodepayment.html",
+        templateUrl : "./component/main.html",
+        controller : 'mainController'
     })
     .when("/contact",{
         templateUrl : "./component/contact.html"
