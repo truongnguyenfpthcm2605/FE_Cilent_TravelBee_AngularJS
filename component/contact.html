@@ -1,3 +1,4 @@
+
 <section class=" hero-wrap-2 js-fullheight"
   style="background-image: url('images/bg_4.jpg');height: 40rem; background-color: rgba(0, green, blue, alpha);">
   <div class="overlay"></div>
@@ -60,27 +61,30 @@
     <div class="container">
       <div class="row block-9">
         <div class="col-md-6 order-md-last d-flex">
-          <form class="bg-light p-5 contact-form">
+          <form class="bg-light p-5 contact-form" name="formfb">
+
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="{{accont_name}}">
+              <input type="text" class="form-control" required placeholder="Tiêu đề" name="txttitle" ng-model="feedback.title">
+              <span style="color: red; font-size: 15px;"
+                ng-show="formfb.txttitle.$dirty && formfb.txttitle.$error.required">Tiêu đề không được bỏ
+                trống</span>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="{{account_email}}" ng-model="feedback.email">
+              <textarea name="txtcontent" id="" cols="30" rows="10" class="form-control" placeholder="Nội Dung"
+                ng-model="feedback.content" required></textarea>
+              <span style="color: red; font-size: 15px;"
+                ng-show="formfb.txtcontent.$dirty && formfb.txtcontent.$error.required">Nội dung không được bỏ
+                trống</span>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Tiêu đề" ng-model="feedback.title">
+              <input type="file" id="fileInputfb" >
             </div>
             <div class="form-group">
-              <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Nội Dung"
-                ng-model="feedback.content"></textarea>
-            </div>
-            <div class="form-group">
-              <input type="file" class="form-control" placeholder="Tiêu đề" multiple>
-            </div>
-            <div class="form-group">
-              <input type="button" value="Send Message" ng-click="send()" class="btn btn-primary py-3 px-5">
+              <button type="button" ng-disabled="formfb.$invalid" ng-click="send()"
+                class="btn btn-primary py-3 px-5">Gửi phản hồi</button>
             </div>
           </form>
+
         </div>
 
         <div class="col-md-6 d-flex">
