@@ -32,6 +32,10 @@
 	<link rel="stylesheet" href="css/login.css">
 	<link rel="stylesheet" href="css/information.css">
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.3.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.3.0/firebase-auth-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.3.0/firebase-storage-compat.js"></script>
 
 
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -114,60 +118,76 @@
 			$rootScope.email = ""
 			$rootScope.token = ""
 			$rootScope.authorities = []
+			$scope.today = {}
 
 			$scope.logout = function () {
 				$http.get($rootScope.url + "/api/v1/auth/logout")
 					.then(response => {
 						$rootScope.fullname = ""
-							$rootScope.email = ""
-							$rootScope.token = ""
-							$rootScope.authorities = []
-							Swal.fire({
-								title: "Đăng xuất Thành Công",
-								width: 600,
-								icon: "success",
-								padding: "3em",
-								color: "#716add",
-								background: "#fff url(/images/trees.png)",
-								backdrop: `
+						$rootScope.email = ""
+						$rootScope.token = ""
+						$rootScope.authorities = []
+						Swal.fire({
+							title: "Đăng xuất Thành Công",
+							width: 600,
+							icon: "success",
+							padding: "3em",
+							color: "#716add",
+							background: "#fff url(/images/trees.png)",
+							backdrop: `
 							rgba(0,0,123,0.4)
 							url("https://i.pinimg.com/originals/5b/cb/d0/5bcbd0bd7c033c9d6f0ef6bf96effd72.gif")
 							left top
 							no-repeat
 							`
-							});
-							$location.path('/main');
+						});
+						$location.path('/main');
 					})
 					.catch(error => {
 						$rootScope.fullname = ""
-							$rootScope.email = ""
-							$rootScope.token = ""
-							$rootScope.authorities = []
-							Swal.fire({
-								title: "Đăng xuất Thành Công",
-								width: 600,
-								icon: "success",
-								padding: "3em",
-								color: "#716add",
-								background: "#fff url(/images/trees.png)",
-								backdrop: `
+						$rootScope.email = ""
+						$rootScope.token = ""
+						$rootScope.authorities = []
+						Swal.fire({
+							title: "Đăng xuất Thành Công",
+							width: 600,
+							icon: "success",
+							padding: "3em",
+							color: "#716add",
+							background: "#fff url(/images/trees.png)",
+							backdrop: `
 							rgba(0,0,123,0.4)
 							url("https://i.pinimg.com/originals/5b/cb/d0/5bcbd0bd7c033c9d6f0ef6bf96effd72.gif")
 							left top
 							no-repeat
 							`
-							});
-							$location.path('/main');
+						});
+						$location.path('/main');
 					})
 			}
 
+			var firebaseConfig = {
+				apiKey: "AIzaSyBnSgLNQca9x6g5SFN8CU9YA1tBz5gGn6c",
+				authDomain: "travel-bee-e0b59.firebaseapp.com",
+				projectId: "travel-bee-e0b59",
+				storageBucket: "travel-bee-e0b59.appspot.com",
+				messagingSenderId: "991526403311",
+				appId: "1:991526403311:web:24e7a3ba76e7d0d769af1a",
+				measurementId: "G-DE29CFQQMY"
+			};
+			var config = firebase.initializeApp(firebaseConfig);
 		})
 	</script>
 	<script src="js/angular/mainController.js"></script>
 	<script src="js/angular/loginController.js"></script>
+
 	<script src="js/angular/registerController.js"></script>
+	<script src="js/angular/changepassController.js"></script>
+
 	<script src="js/angular/tourController.js"></script>
 	<script src="js/angular/feedbackController.js"></script>
+	<script src="js/angular/informationController.js"></script>
+	<script src="js/angular/qrcodepaymentController.js"></script>
 	<script src="js/customjs/login.js"></script>
 	<script src="js/angular/route.js"></script>
 	<script src="js/angular/mainController.js"></script>
