@@ -19,212 +19,33 @@
     </div>
   </div>
 
-  <section class="ftco-section ftco-no-pb ftco-no-pt">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="ftco-search d-flex justify-content-center">
-            <div class="row">
-              <div class="col-md-12 nav-link-wrap">
-                <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                  <a class="nav-link active mr-md-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1 " style="background-color:#ec6e07; color: white;" role="tab"
-                    aria-controls="v-pills-1" aria-selected="true">Search Tour</a>
-
-
-                </div>
-              </div>
-              <div class="col-md-12 tab-wrap">
-
-                <div class="tab-content" id="v-pills-tabContent">
-
-                  <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
-                    aria-labelledby="v-pills-nextgen-tab">
-                    <form action="#" class="search-property-1">
-                      <div class="row no-gutters">
-                        <div class="col-md d-flex">
-                          <div class="form-group p-4 border-0">
-                            <label for="#">Destination</label>
-                            <div class="form-field">
-                              <div class="icon"><span class="fa fa-search"></span></div>
-                              <input type="text" class="form-control" placeholder="Search place">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md d-flex">
-                          <div class="form-group p-4">
-                            <label for="#">Check-in date</label>
-                            <div class="form-field">
-                              <div class="icon"><span class="fa fa-calendar"></span></div>
-                              <input type="text" class="form-control checkin_date" placeholder="Check In Date">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md d-flex">
-                          <div class="form-group p-4">
-                            <label for="#">Check-out date</label>
-                            <div class="form-field">
-                              <div class="icon"><span class="fa fa-calendar"></span></div>
-                              <input type="text" class="form-control checkout_date" placeholder="Check Out Date">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md d-flex">
-                          <div class="form-group p-4">
-                            <label for="#">Price Limit</label>
-                            <div class="form-field">
-                              <div class="select-wrap">
-                                <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                <select name="" id="" class="form-control">
-                                  <option value="">$100</option>
-                                  <option value="">$10,000</option>
-                                  <option value="">$50,000</option>
-                                  <option value="">$100,000</option>
-                                  <option value="">$200,000</option>
-                                  <option value="">$300,000</option>
-                                  <option value="">$400,000</option>
-                                  <option value="">$500,000</option>
-                                  <option value="">$600,000</option>
-                                  <option value="">$700,000</option>
-                                  <option value="">$800,000</option>
-                                  <option value="">$900,000</option>
-                                  <option value="">$1,000,000</option>
-                                  <option value="">$2,000,000</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md d-flex">
-                          <div class="form-group d-flex w-100 border-0">
-                            <div class="form-field w-100 align-items-center d-flex">
-                              <input type="submit" value="Search"
-                                class="align-self-stretch form-control btn btn-primary">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </section>
 
   <section class="ftco-section">
     <div class="container">
       <div class="row justify-content-center pb-4">
         <div class="col-md-12 heading-section text-center ">
-          <span class="subheading">Destination</span>
-          <h2 class="mb-4">Tour Destination</h2>
+          <span class="subheading">Tour Hot</span>
+          <h2 class="mb-4">Tour Nổi Bật</h2>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4 ">
+        <div class="col-md-4 " ng-repeat="item in tourOutstanding">
           <div class="project-wrap">
-            <a href="#" class="img" style="background-image: url(images/destination-1.jpg);">
-              <span class="price">$550/person</span>
-            </a>
-            <div class="text p-4">
-              <span class="days">8 Days Tour</span>
-              <h3><a href="#">Banaue Rice Terraces</a></h3>
-              <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-              <ul>
-                <li><span class="flaticon-shower"></span>2</li>
-                <li><span class="flaticon-king-size"></span>3</li>
-                <li><span class="flaticon-mountains"></span>Near Mountain</li>
-              </ul>
-            </div>
+              <a href="#" class="img" style="background-image: url({{item.images[3]}});">
+                  <span class="price">{{item.price | currency:'VNĐ ':0 }}</span>
+              </a>
+              <div class="text p-4">
+                  <span class="days">8 Days Tour</span>
+                  <h3><a href="#!blogsingle">{{item.title}}</a></h3>
+                  <p class="location"><span class="fa fa-map-marker"></span> Đà Nẵng, Hà Nội, TP HCM</p>
+                  <ul>
+                      <li><span class="flaticon-shower"></span>2</li>
+                      <li><span class="flaticon-king-size"></span>3</li>
+                      <li><span class="flaticon-mountains"></span></li>
+                  </ul>
+              </div>
           </div>
-        </div>
-        <div class="col-md-4 ">
-          <div class="project-wrap">
-            <a href="#" class="img" style="background-image: url(images/destination-2.jpg);">
-              <span class="price">$550/person</span>
-            </a>
-            <div class="text p-4">
-              <span class="days">10 Days Tour</span>
-              <h3><a href="#">Banaue Rice Terraces</a></h3>
-              <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-              <ul>
-                <li><span class="flaticon-shower"></span>2</li>
-                <li><span class="flaticon-king-size"></span>3</li>
-                <li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 ">
-          <div class="project-wrap">
-            <a href="#" class="img" style="background-image: url(images/destination-3.jpg);">
-              <span class="price">$550/person</span>
-            </a>
-            <div class="text p-4">
-              <span class="days">7 Days Tour</span>
-              <h3><a href="#">Banaue Rice Terraces</a></h3>
-              <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-              <ul>
-                <li><span class="flaticon-shower"></span>2</li>
-                <li><span class="flaticon-king-size"></span>3</li>
-                <li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 ">
-          <div class="project-wrap">
-            <a href="#" class="img" style="background-image: url(images/destination-4.jpg);">
-              <span class="price">$550/person</span>
-            </a>
-            <div class="text p-4">
-              <span class="days">8 Days Tour</span>
-              <h3><a href="#">Banaue Rice Terraces</a></h3>
-              <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-              <ul>
-                <li><span class="flaticon-shower"></span>2</li>
-                <li><span class="flaticon-king-size"></span>3</li>
-                <li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 ">
-          <div class="project-wrap">
-            <a href="#" class="img" style="background-image: url(images/destination-5.jpg);">
-              <span class="price">$550/person</span>
-            </a>
-            <div class="text p-4">
-              <span class="days">10 Days Tour</span>
-              <h3><a href="#">Banaue Rice Terraces</a></h3>
-              <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-              <ul>
-                <li><span class="flaticon-shower"></span>2</li>
-                <li><span class="flaticon-king-size"></span>3</li>
-                <li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 ">
-          <div class="project-wrap">
-            <a href="#" class="img" style="background-image: url(images/destination-6.jpg);">
-              <span class="price">$550/person</span>
-            </a>
-            <div class="text p-4">
-              <span class="days">7 Days Tour</span>
-              <h3><a href="#">Banaue Rice Terraces</a></h3>
-              <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-              <ul>
-                <li><span class="flaticon-shower"></span>2</li>
-                <li><span class="flaticon-king-size"></span>3</li>
-                <li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -271,79 +92,6 @@
     </div>
   </section>
 
-
-  <section class="ftco-section">
-    <div class="container">
-      <div class="row justify-content-center pb-4">
-        <div class="col-md-12 heading-section text-center ">
-          <span class="subheading">Our Blog</span>
-          <h2 class="mb-4">Recent Post</h2>
-        </div>
-      </div>
-      <div class="row d-flex">
-        <div class="col-md-4 d-flex ">
-          <div class="blog-entry justify-content-end">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-            </a>
-            <div class="text">
-              <div class="d-flex align-items-center mb-4 topp">
-                <div class="one">
-                  <span class="day">11</span>
-                </div>
-                <div class="two">
-                  <span class="yr">2020</span>
-                  <span class="mos">September</span>
-                </div>
-              </div>
-              <h3 class="heading"><a href="#">Most Popular Place In This World</a></h3>
-              <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
-              <p><a href="#" class="btn btn-primary">Read more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 d-flex ">
-          <div class="blog-entry justify-content-end">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-            </a>
-            <div class="text">
-              <div class="d-flex align-items-center mb-4 topp">
-                <div class="one">
-                  <span class="day">11</span>
-                </div>
-                <div class="two">
-                  <span class="yr">2020</span>
-                  <span class="mos">September</span>
-                </div>
-              </div>
-              <h3 class="heading"><a href="#">Most Popular Place In This World</a></h3>
-              <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
-              <p><a href="#" class="btn btn-primary">Read more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 d-flex ">
-          <div class="blog-entry">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-            </a>
-            <div class="text">
-              <div class="d-flex align-items-center mb-4 topp">
-                <div class="one">
-                  <span class="day">11</span>
-                </div>
-                <div class="two">
-                  <span class="yr">2020</span>
-                  <span class="mos">September</span>
-                </div>
-              </div>
-              <h3 class="heading"><a href="#">Most Popular Place In This World</a></h3>
-              <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
-              <p><a href="#" class="btn btn-primary">Read more</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

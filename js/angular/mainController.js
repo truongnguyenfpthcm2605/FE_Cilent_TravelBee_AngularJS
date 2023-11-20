@@ -1,8 +1,8 @@
-app.controller("mainController", function($scope, $http) {
+app.controller("mainController", function($scope, $http,$rootScope) {
     $scope.title = "Khám Phá Sở Thích Của Bạn Ở Nơi Chúng Tôi"
     $scope.welcome = "Welcome to Travel Bee"
     $scope.travel = "Du lịch ở bất cứ mọi nơi ở Việt Nam, hãy đi cùng chúng tôi !"
-
+    $scope.tourOutstanding = []
     $scope.weather = function () {
         $http.get('https://weatherapi-com.p.rapidapi.com/forecast.json?q=Ho Chi Minh City&days=1&lang=vi', {
             headers: {
@@ -16,10 +16,32 @@ app.controller("mainController", function($scope, $http) {
                 status : response.data.current.condition.text,
                 C : response.data.current.temp_c
             }
-            console.log($scope.today)
+        
         }).catch(error => {
             console.log(error)
         })
     }
+
+    $scope.loadTour = function(){
+        $http.get($rootScope.url + "/api/v1/home/tourOutstanding")
+        .then(response => {
+            $scope.tourOutstanding = response.data;
+            $scope.tourOutstanding.forEach(tour => {
+              if (tour.images) {
+                let imageUrls = tour.images.split(',');
+                imageUrls = imageUrls.map(url => url.trim());
+                tour.images = imageUrls;
+              }
+            });
+
+          })
+          .catch(error => {
+            console.log('Error', error);
+          });
+    }
+
+
+
+    $scope.loadTour()
     $scope.weather()
 });

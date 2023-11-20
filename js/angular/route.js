@@ -6,7 +6,8 @@ app.config(function($routeProvider){
         controller : 'mainController'
     })
     .when("/contact",{
-        templateUrl : "./component/contact.html"
+        templateUrl : "./component/contact.html",
+        controller : 'feedbackController'
     })
     .when("/tour",{
         templateUrl : "./component/tourdetail.html",
