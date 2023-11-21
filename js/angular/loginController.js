@@ -17,7 +17,6 @@ app.controller(
             $rootScope.fullname = $scope.object.fullName;
             $rootScope.authorities = $scope.object.authorities;
             $rootScope.token = $scope.object.token;
-            console.log($rootScope.token);
             Swal.fire({
               title: "Đăng Nhập Thành Công",
               width: 600,

@@ -2,10 +2,10 @@ app.controller(
   "registerController",
   function ($scope, $http, $location, $rootScope) {
     $scope.register = {
-      fullname: "thien1",
-      username: "thien231",
-      email: "phuthienlevo@gmail.com",
-      password: "123",
+      fullname: "",
+      username: "",
+      email: "",
+      password: "",
       birthday: "",
       roles: "USER",
     };
@@ -21,7 +21,6 @@ app.controller(
           });
           return;
         }
-        console.log($scope.register);
         if ($scope.register.verificationCode != "") {
           if ($scope.verificationCode === $scope.code) {
             // Mã xác nhận chính xác, xử lý tiếp theo ở đây
@@ -45,14 +44,21 @@ app.controller(
                 $location.path("/main");
               })
               .catch((error) => {
-                Swal.fire({
-                  icon: "error",
-                  title: "Đăng Kí Thất Bại",
-                  text: "kiểm tra tài khoản và mật khẩu!",
-                });
-              });
+                if (error.data && error.data.status) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Đăng Kí Thất Bại",
+                        text: error.data.status,
+                    });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Đăng Kí Thất Bại",
+                        text: "Có lỗi xảy ra. Vui lòng thử lại sau.",
+                    });
+                }
+            });
           } else {
-            // Mã xác nhận không chính xác, xử lý tương ứng
             Swal.fire({
               icon: "error",
               title: "Đăng Kí Thất Bại",
@@ -62,11 +68,9 @@ app.controller(
         }
       } else {
         console.log("thatbai");
-        alert("Login Fail");
       }
     };
     $scope.sendEmail = function () {
-      // Kiểm tra xem các trường đều có dữ liệu hợp lệ
       if ($scope.register.email != "") {
         var data = { email: $scope.register.email };
 

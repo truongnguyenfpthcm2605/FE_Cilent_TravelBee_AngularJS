@@ -36,7 +36,6 @@ app.controller("mainController", function($scope, $http,$rootScope) {
 
           })
           .catch(error => {
-            console.log('Error', error);
           });
     }
 

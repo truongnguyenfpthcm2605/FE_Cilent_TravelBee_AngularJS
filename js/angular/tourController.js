@@ -13,11 +13,8 @@ app.controller("tourController", function($scope, $http, $rootScope) {
               tour.images = imageUrls;
             }
           });
-  
-          console.log('Success', response);
         })
         .catch(error => {
-          console.log('Error', error);
         });
     };
   

@@ -34,7 +34,6 @@ app.controller("feedbackController", function ($scope, $http, $rootScope, $locat
         return uploadIMG.then((snapshot) => snapshot.ref.getDownloadURL())
             .then((url) => {
                 $scope.feedback.images = url
-                console.log( $scope.feedback.images)
                 return url;
             });
 
@@ -50,7 +49,6 @@ app.controller("feedbackController", function ($scope, $http, $rootScope, $locat
             $location.url("/login")
         } else {
             $scope.feedback.email = $rootScope.email
-            console.log($scope.feedback)
             $http.post($rootScope.url + "/api/v1/feedback/send-feedback", $scope.feedback,{
                 headers: {
                     'Authorization': 'Bearer ' + $rootScope.token
@@ -71,6 +69,7 @@ app.controller("feedbackController", function ($scope, $http, $rootScope, $locat
                       no-repeat
                     `
                     });
+                    $location.url("/main")
                 })
                 .catch(error => {
                     console.log(error)

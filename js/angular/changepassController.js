@@ -2,33 +2,13 @@ app.controller(
   "changepassController",
   function ($scope, $http, $location, $rootScope) {
     $scope.changepass = {
-      password: "thien1",
+      password: "",
       email: $rootScope.email,
       newpass: "",
     };
     $scope.object = {};
-    $scope.find = function () {
-      if ($rootScope.token !== "") {
-        $http
-          .get($rootScope.url + "/api/v1/account/" + $rootScope.email, {
-            headers: {
-              Authorization: "Bearer " + $rootScope.token,
-            },
-          })
-          .then((respone) => {
-            $scope.account = respone.data;
-            if ($scope.account.image === null) {
-              $scope.account.image =
-                "https://inkythuatso.com/uploads/thumbnails/800/2023/03/6-anh-dai-dien-trang-inkythuatso-03-15-26-36.jpg";
-            } else {
-              previewImage.src = $scope.account.image;
-            }
-          })
-          .catch((error) => {
-            console.log("Error", error);
-          });
-      }
-    };
+
+
     $scope.submitForm = function () {
       if ($scope.formchangepass.$valid) {
         if ($scope.changepass.newpass !== $scope.changepass.confirmnewpass) {
@@ -39,27 +19,25 @@ app.controller(
           });
           return;
         }
-        console.log($scope.changepass);
         $http
           .post(
             $rootScope.url +
-              "/api/v1/account/changepass" +
-              "?password=" +
-              $scope.changepass.password +
-              "&email=" +
-              $rootScope.email +
-              "&newpass=" +
-              $scope.changepass.newpass,
+            "/api/v1/account/changepass" +
+            "?password=" +
+            $scope.changepass.password +
+            "&email=" +
+            $rootScope.email +
+            "&newpass=" +
+            $scope.changepass.newpass,
             $scope.changepass,
             {
               headers: {
                 Authorization: "Bearer " + $rootScope.token,
-              },
+              }
             }
           )
           .then((response) => {
             $scope.object = response.data;
-            console.log(response.data);
             Swal.fire({
               title: "Đổi Mật Khẩu Thành Công",
               width: 600,
@@ -74,7 +52,7 @@ app.controller(
                             no-repeat
                           `,
             });
-            $location.path("/main");
+            $scope.logout()
           })
           .catch((error) => {
             Swal.fire({
@@ -88,5 +66,22 @@ app.controller(
         alert("Changepass Fail");
       }
     };
+
+    $scope.logout = function () {
+      $http.get($rootScope.url + "/api/v1/auth/logout")
+        .then(response => {
+          $rootScope.fullname = ""
+          $rootScope.email = ""
+          $rootScope.token = ""
+          $rootScope.authorities = []
+          $location.path('/main');
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+
+
+
   }
 );

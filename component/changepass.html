@@ -5,7 +5,7 @@
             <form action="#" name="formchangepass">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Mật khẩu cũ *</label>
-                    <input type="password" class="form-control " ng-model="changepass.password" id="password"
+                    <input type="text" class="form-control " ng-model="changepass.password" id="password"
                         aria-describedby="emailHelp" placeholder="Mật Khẩu Cũ" name="txtpassword" required>
                     <span style="color: red; font-size: 15px;"
                         ng-show="formchangepass.txtpassword.$dirty && formchangepass.txtpassword.$error.required">Password
@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Mật Khẩu mới *</label>
-                    <input type="password" class="form-control" ng-model="changepass.newpass" id="newpass"
+                    <input type="text" class="form-control" ng-model="changepass.newpass" id="newpass"
                         aria-describedby="emailHelp" placeholder="Mật Khẩu Mới" name="txtnewpass" required>
                     <span style="color: red; font-size: 15px;"
                         ng-show="formchangepass.txtnewpass.$dirty && formchangepass.txtnewpass.$error.required">New
@@ -28,7 +28,7 @@
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Xác nhận mật khẩu *</label>
-                    <input type="password" class="form-control" ng-model="changepass.confirmnewpass" id="confirmnewpass"
+                    <input type="text" class="form-control" ng-model="changepass.confirmnewpass" id="confirmnewpass"
                         aria-describedby="emailHelp" placeholder="Nhập Lại Mật Khẩu" name="txtconfirmnewpass" required>
                     <span style="color: red; font-size: 15px;"
                         ng-show="formchangepass.txtconfirmnewpass.$dirty && formchangepass.txtconfirmnewpass.$error.required">Confirm

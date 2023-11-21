@@ -2,7 +2,7 @@
 app.config(function($routeProvider){
     $routeProvider
     .when("/main",{
-        templateUrl : "./component/main.html",
+        templateUrl : "./component/payment.html",
         controller : 'mainController'
     })
     .when("/contact",{
@@ -10,7 +10,7 @@ app.config(function($routeProvider){
         controller : 'feedbackController'
     })
     .when("/tour",{
-        templateUrl : "./component/tourdetail.html",
+        templateUrl : "./component/tour.html",
         controller : 'tourController'
     })
     .when("/blogsingle",{
