@@ -1,12 +1,12 @@
 <section class="containers forms" ng-controller="changepassController">
     <div class="form signup">
         <div class="form-content">
-            <header>Đổi Mật Khẩu</header>
+            <header>{{language.changepass_title}}</header>
             <form action="#" name="formchangepass">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Mật khẩu cũ *</label>
+                    <label for="exampleInputEmail1">{{language.changepass_cu}} *</label>
                     <input type="text" class="form-control " ng-model="changepass.password" id="password"
-                        aria-describedby="emailHelp" placeholder="Mật Khẩu Cũ" name="txtpassword" required>
+                        aria-describedby="emailHelp" placeholder="{{language.changepass_cu}}" name="txtpassword" required>
                     <span style="color: red; font-size: 15px;"
                         ng-show="formchangepass.txtpassword.$dirty && formchangepass.txtpassword.$error.required">Password
                         không
@@ -15,9 +15,9 @@
                         trống</span>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Mật Khẩu mới *</label>
+                    <label for="exampleInputEmail1">{{language.changepass_new}} *</label>
                     <input type="text" class="form-control" ng-model="changepass.newpass" id="newpass"
-                        aria-describedby="emailHelp" placeholder="Mật Khẩu Mới" name="txtnewpass" required>
+                        aria-describedby="emailHelp" placeholder="{{language.changepass_new}}" name="txtnewpass" required>
                     <span style="color: red; font-size: 15px;"
                         ng-show="formchangepass.txtnewpass.$dirty && formchangepass.txtnewpass.$error.required">New
                         Password không
@@ -27,9 +27,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Xác nhận mật khẩu *</label>
+                    <label for="exampleInputEmail1">{{language.changepass_new2}} *</label>
                     <input type="text" class="form-control" ng-model="changepass.confirmnewpass" id="confirmnewpass"
-                        aria-describedby="emailHelp" placeholder="Nhập Lại Mật Khẩu" name="txtconfirmnewpass" required>
+                        aria-describedby="emailHelp" placeholder="{{language.changepass_new2}}" name="txtconfirmnewpass" required>
                     <span style="color: red; font-size: 15px;"
                         ng-show="formchangepass.txtconfirmnewpass.$dirty && formchangepass.txtconfirmnewpass.$error.required">Confirm
                         New Password không
@@ -40,7 +40,7 @@
                 <br>
                 <div class="field button-field">
                     <button type="button" ng-click="submitForm()" ng-disabled="formchangepass.$invalid"
-                        class="btn bg-gradient-dark w-100 my-4 mb-2">Thay Đổi</button>
+                        class="btn bg-gradient-dark w-100 my-4 mb-2">{{language.changepass_save}}</button>
                 </div>
             </form>
 

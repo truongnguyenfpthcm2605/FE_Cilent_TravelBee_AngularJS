@@ -2,7 +2,7 @@
 app.config(function($routeProvider){
     $routeProvider
     .when("/main",{
-        templateUrl : "./component/payment.html",
+        templateUrl : "./component/main.html",
         controller : 'mainController'
     })
     .when("/contact",{
@@ -32,8 +32,11 @@ app.config(function($routeProvider){
     .when("/history",{
         templateUrl : "./component/historyticket.html"
     })
+    .when("/payment",{
+        templateUrl : "./component/payment.html",
+    })
     .otherwise({
-       redirectTo : "/main"
+       redirectTo : "/payment"
     })
     
 })
