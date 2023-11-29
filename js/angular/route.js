@@ -10,7 +10,7 @@ app.config(function($routeProvider){
         controller : 'feedbackController'
     })
     .when("/tour",{
-        templateUrl : "./component/tour.html",
+        templateUrl : "./component/tourdetail.html",
         controller : 'tourController'
     })
     .when("/blogsingle",{
@@ -36,7 +36,7 @@ app.config(function($routeProvider){
         templateUrl : "./component/payment.html",
     })
     .otherwise({
-       redirectTo : "/payment"
+       redirectTo : "/main"
     })
     
 })
