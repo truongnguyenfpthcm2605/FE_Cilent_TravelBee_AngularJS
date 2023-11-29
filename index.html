@@ -13,7 +13,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/ticket.css">
 	<link rel="stylesheet" href="css/animate.css">
@@ -30,22 +32,25 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
- 		<!-- Bootstrap -->
- 		
+	<!-- Bootstrap -->
 
- 		<!-- Slick -->
- 		<link type="text/css" rel="stylesheet" href="css1/slick.css"/>
- 		<link type="text/css" rel="stylesheet" href="css1/slick-theme.css"/>
 
- 		<!-- nouislider -->
- 		<link type="text/css" rel="stylesheet" href="css1/nouislider.min.css"/>
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="css1/slick.css" />
+	<link type="text/css" rel="stylesheet" href="css1/slick-theme.css" />
 
- 		<!-- Font Awesome Icon -->
- 		<link rel="stylesheet" href="css1/font-awesome.min.css">
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="css1/nouislider.min.css" />
 
- 		<!-- Custom stlylesheet -->
- 		<link type="text/css" rel="stylesheet" href="css1/style.css"/>
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="css1/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	
+	<link type="text/css" rel="stylesheet" href="css1/style.css" />
 	<link rel="stylesheet" href="css/test3.css">
+	
+	<link rel="stylesheet" href="css/modal.css">
 </head>
 
 
@@ -55,7 +60,7 @@
 		ng-include="'./component/header.html'">
 	</nav>
 	<main ng-view></main>
-
+	
 	<footer class="ftco-footer bg-bottom ftco-no-pt" style="background-image: url(images/bg_3.jpg);"
 		ng-include="'./component/footer.html'">
 	</footer>
@@ -70,10 +75,10 @@
 		</svg></div>
 
 	<!-- Messenger Plugin chat Code -->
-    <!-- <div id="fb-root"></div>
+	<!-- <div id="fb-root"></div>
 
     <-- Your Plugin chat code -->
-    <!-- <div id="fb-customer-chat" class="fb-customerchat">
+	<!-- <div id="fb-customer-chat" class="fb-customerchat">
     </div>
 
     <script>
@@ -82,8 +87,8 @@
       chatbox.setAttribute("attribution", "biz_inbox");
     </script>  -->
 
-    <!-- Your SDK code -->
-    <!-- <script>
+	<!-- Your SDK code -->
+	<!-- <script>
       window.fbAsyncInit = function() {
         FB.init({
           xfbml            : true,
@@ -102,14 +107,20 @@
 
 	<script>
 		let app = angular.module("app", ['ngRoute'])
-		app.controller("homeController", function ($scope,$rootScope) {
+		app.controller("homeController", function ($scope, $rootScope) {
 			$rootScope.url = "http://localhost:8080"
-			
+
 		})
+		
+  
+
 	</script>
+
+	
 	<script src="js/angular/mainController.js"></script>
 	<script src="js/angular/tourController.js"></script>
 	<script src="js/angular/feedbackController.js"></script>
+	<script src="js/angular/tourdetailController.js"></script>
 	<script src="js/customjs/login.js"></script>
 	<script src="js/angular/route.js"></script>
 	<script src="js/angular/mainController.js"></script>
@@ -129,12 +140,13 @@
 
 	<script src="js/jquery.min.js"></script>
 	<!-- js tour -->
-		
-		<script src="js1/slick.min.js"></script>
-		<script src="js1/nouislider.min.js"></script>
-		<script src="js1/jquery.zoom.min.js"></script>
-		<script src="js1/main.js"></script>
+
+	<script src="js1/slick.min.js"></script>
+	<script src="js1/nouislider.min.js"></script>
+	<script src="js1/jquery.zoom.min.js"></script>
+	<script src="js1/main.js"></script>
 	<script src="js/image.js"></script>
+	
 
 </body>
 

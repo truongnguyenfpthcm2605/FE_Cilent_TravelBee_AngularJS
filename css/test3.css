@@ -1,19 +1,21 @@
 
 
 .main-image {
-  height: 60vh;
+  height: 80vh;
   /* Sử dụng chiều cao của viewport */
   width: auto;
   /* Đảm bảo tỷ lệ khung hình bảo toàn */
   object-fit: cover;
   /* Hiển thị ảnh bên trong khung hình mà không biến dạng */
   transition: opacity 0.3s;
+  
 }
 
 .thumbnail-image {
-  max-height: 100px;
+  height: 40px;
+  width: 120px;
   cursor: pointer;
-  opacity: 0.3;
+  opacity: 1;
   transition: opacity 0.3s;
 }
 
@@ -66,7 +68,6 @@ padding: 20px;
 border-radius: 5px;
 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 
 
 

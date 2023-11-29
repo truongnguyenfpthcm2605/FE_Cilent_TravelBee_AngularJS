@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+  <title>AngularJS Modal Example</title>
+  <link rel="stylesheet" href="css/modal.css">
+</head>
+
+<body ng-controller="ModalController">
+  <!-- Button để mở modal -->
+  <button ng-click="openModal()">Open Modal</button>
+
+  <!-- Modal -->
+  <div class="modal" ng-class="{'modal-show': modalVisible}">
+    <div class="modal-content">
+      <span ng-click="closeModal()" style="float: right; cursor: pointer;">&times;</span>
+      <h2>Modal Content</h2>
+      <p>This is a sample modal.</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+  <script src="js/modal.js"></script>
+</body>
+
+</html>
