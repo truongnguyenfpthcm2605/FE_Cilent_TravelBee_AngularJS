@@ -1,27 +1,11 @@
 
   var currentImageIndex = 0;
-  var imageUrls = ['images/communication-4871245_1280.webp', 'images/pt2.jpg', 'images/pt3.jpg', 'images/pt4.jpg', 'images/pt5.jpg'];
+  
 
-  function changeImage(imageUrl) {
+  $scope.changeImage = function(imageUrl) {
     var mainImage = document.getElementById('mainImage');
-    mainImage.classList.remove('animate__fadeIn');
-    mainImage.classList.add('animate__fadeOut');
-    setTimeout(function() {
-      mainImage.src = imageUrl;
-      mainImage.classList.remove('animate__fadeOut');
-      mainImage.classList.add('animate__fadeIn');
-    }, 500);
-
-    var thumbnailImages = document.getElementsByClassName('thumbnail-image');
-    for (var i = 0; i < thumbnailImages.length; i++) {
-      thumbnailImages[i].classList.remove('active');
-    }
-
-    var selectedThumbnail = event.target;
-    selectedThumbnail.classList.add('active');
-
-    currentImageIndex = imageUrls.indexOf(imageUrl);
-  }
+    mainImage.src = imageUrl;
+  };
 
   function nextImage() {
     var mainImage = document.getElementById('mainImage');
@@ -68,3 +52,6 @@
       thumbnailImages[currentImageIndex].classList.add('active');
     }, 500);
   }
+  
+  
+  

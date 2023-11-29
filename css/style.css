@@ -10084,3 +10084,47 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+    
+
+    .page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+    .page-number {
+      font-size: 18px;
+      font-weight: unset;
+      padding: 5px 10px;
+      
+      
+     
+    }
+    .prev-btn,
+    .next-btn {
+      background: linear-gradient(120deg, #f15d30, #f15d3099, #e54211);
+      background-size: 200% 200%;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 30px;
+      animation: sparkling 1.5s ease-in-out infinite;
+      width: 100px;
+    }
+    
+    @keyframes sparkling {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .prev-btn:hover,
+    .next-btn:hover {
+      animation: none;
+      background: linear-gradient(120deg,#f15d30, #f15d3099, #e54211);
+    }
+    

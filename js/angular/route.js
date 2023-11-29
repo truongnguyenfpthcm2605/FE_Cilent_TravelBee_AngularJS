@@ -13,6 +13,26 @@ app.config(function($routeProvider){
         templateUrl : "./component/tourdetail.html",
         controller : 'tourController'
     })
+    .when("/tourdetail/:tourId",{
+        templateUrl : "./component/tourdetail.html",
+        controller : 'TourDetailController'
+    })
+    .when("/hotel/:tourId",{
+        templateUrl : "./component/hotel.html",
+        controller : 'TourDetailController'
+    })
+    .when("/transport/:tourId",{
+        templateUrl : "./component/transport.html",
+        controller : 'TourDetailController'
+    })
+    .when("/location/:tourId",{
+        templateUrl : "./component/location.html",
+        controller : 'TourDetailController'
+    })
+    .when("/payment",{
+        templateUrl : "./component/payment.html",
+        controller : 'paymentController'
+    })
     .when("/blogsingle",{
         templateUrl : "./component/blog-single.html"
     })

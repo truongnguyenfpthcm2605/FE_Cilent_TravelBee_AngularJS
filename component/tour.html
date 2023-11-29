@@ -27,7 +27,7 @@
                                         <label for="#">Destination</label>
                                         <div class="form-field">
                                             <div class="icon"><span class="fa fa-search"></span></div>
-                                            <input type="text" class="form-control" placeholder="Search place">
+                                            <input type="text" class="form-control" ng-model="searchKeyword" placeholder="Search place">
                                         </div>
                                     </div>
                                 </div>
@@ -96,12 +96,12 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 " ng-repeat="item in tours">
-                    <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url({{item.images[3]}});">
+                <div class="col-md-4 " ng-repeat="item in tours | filter: searchKeyword">
+                    <div class="project-wrap"  ng-click="selectTour(tour)">
+                        <a href="#!tourdetail/{{item.id}}" class="img" style="background-image: url({{item.images[3]}});">
                             <span class="price">{{item.price}}</span>
                         </a>
-                        <div class="text p-4">
+                        <div class="text p-4" >
                             <span class="days">8 Days Tour</span>
                             <h3><a href="#!blogsingle">{{item.title}}</a></h3>
                             <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
@@ -115,7 +115,7 @@
                 </div>
                
             </div>
-            <div class="row mt-5">
+            <!-- <div class="row mt-5">
                 <div class="col text-center">
                     <div class="block-27">
                         <ul>
@@ -129,9 +129,13 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </div> -->
+            <div class="page">
+                <button class="prev-btn" ng-click="prevPage()" ng-disabled="currentPage === 0">Trước</button>
+               <span class="page-number"> Trang {{ currentPage + 1 }} / {{ pageCount() }}</span>
+                <button class="next-btn" ng-click="nextPage()" ng-disabled="currentPage === pageCount() - 1">Tiếp</button>
+              </div>
+        </section>
 
 
 
