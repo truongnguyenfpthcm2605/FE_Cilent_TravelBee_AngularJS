@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get File Name Example</title>
+    <style>
+        /* Ẩn thanh cuộn ngang cho input file */
+        input[type="file"]::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+        input[type="file"] {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        input[type="file"] + label {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row" style="display: flex; flex-flow: column; justify-content: center; align-items: center; background: url('https://vietabank.com.vn/uploads/files/khach-hang-ca-nhan/cac-dich-vu-khac/dich-vu-thanh-toan-hoa-don/banner-inner-04.jpg') no-repeat;">
+        <div style="text-align: center; margin: 10%;">
+            <h5 style="color: white; font-weight: 300;">Mở App Ngân hàng, quét mã QRCode và nhập số tiền cần chuyển</h5>
+            <img style="border-radius: 10px; width: 300px;" src="https://api.vietqr.io/TPbank/70007092005/SO TIEN/NOI DUNG/vietqr_net_2.jpg?accountName=NGUY%E1%BB%84N%20PH%C3%9E%20KH%C6%AF%C6%A0NG" alt="">
+            <div  class="text" style="color: red; margin-top: 10px;"></div>
+        </div>
+        <script>
+           setTimeout(function(){
+            let check = document.querySelector('.text')
+            check.innerHTML = "Hello"
+            alert("hello")
+           }, 1000)
+        </script>
+    </div>
+    
+
+</body>
+</html>
+
+
+

@@ -1,12 +1,13 @@
+
 <section class=" hero-wrap-2 js-fullheight"
   style="background-image: url('images/bg_4.jpg');height: 40rem; background-color: rgba(0, green, blue, alpha);">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
       <div class="col-md-9  pb-5 text-center" style="margin-top: 30rem;">
-        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Trang Chủ <i
-                class="fa fa-chevron-right"></i></a></span> <span>Liên Hệ<i class="fa fa-chevron-right"></i></span></p>
-        <h1 class="mb-0 bread">Liên Hệ</h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">{{language.home_home}}<i
+                class="fa fa-chevron-right"></i></a></span> <span>{{language.home_contact}}<i class="fa fa-chevron-right"></i></span></p>
+        <h1 class="mb-0 bread">{{language.home_contact}}</h1>
       </div>
     </div>
   </div>
@@ -21,8 +22,8 @@
             <div class="icon d-flex align-items-center justify-content-center">
               <span class="fa fa-map-marker"></span>
             </div>
-            <h3 class="mb-2">Địa Chỉ</h3>
-            <p>Công viên phần mềm Quang QTSC Building 1, Trung, P Q.12, Thành phố Hồ Chí Minh, Vietnam</p>
+            <h3 class="mb-2">{{language.contact_address}}</h3>
+            <p>{{language.contact_address_sub}}</p>
           </div>
         </div>
         <div class="col-md-3 d-flex">
@@ -30,7 +31,7 @@
             <div class="icon d-flex align-items-center justify-content-center">
               <span class="fa fa-phone"></span>
             </div>
-            <h3 class="mb-2">Điện Thoại Liên Hệ</h3>
+            <h3 class="mb-2">{{language.contact_phone}}</h3>
             <p><a href="tel://1234567920">0999999999</a></p>
           </div>
         </div>
@@ -48,8 +49,8 @@
             <div class="icon d-flex align-items-center justify-content-center">
               <span class="fa fa-globe"></span>
             </div>
-            <h3 class="mb-2">Hỏi Đáp</h3>
-            <p><a href="https://www.facebook.com/profile.php?id=61553337365112">Mở Liên Kết</a></p>
+            <h3 class="mb-2">{{language.contact_question}}</h3>
+            <p><a href="https://www.facebook.com/profile.php?id=61553337365112">{{language.contact_open_access}}</a></p>
           </div>
         </div>
       </div>
@@ -60,27 +61,30 @@
     <div class="container">
       <div class="row block-9">
         <div class="col-md-6 order-md-last d-flex">
-          <form class="bg-light p-5 contact-form">
+          <form class="bg-light p-5 contact-form" name="formfb">
+
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="{{accont_name}}">
+              <input type="text" class="form-control" required placeholder="{{language.contact_title}}" name="txttitle" ng-model="feedback.title">
+              <span style="color: red; font-size: 15px;"
+                ng-show="formfb.txttitle.$dirty && formfb.txttitle.$error.required">Tiêu đề không được bỏ
+                trống</span>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="{{account_email}}" ng-model="feedback.email">
+              <textarea name="txtcontent" id="" cols="30" rows="10" class="form-control" placeholder="{{language.contact_content}}"
+                ng-model="feedback.content" required></textarea>
+              <span style="color: red; font-size: 15px;"
+                ng-show="formfb.txtcontent.$dirty && formfb.txtcontent.$error.required">Nội dung không được bỏ
+                trống</span>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Tiêu đề" ng-model="feedback.title">
+              <input type="file" id="fileInputfb" >
             </div>
             <div class="form-group">
-              <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Nội Dung"
-                ng-model="feedback.content"></textarea>
-            </div>
-            <div class="form-group">
-              <input type="file" class="form-control" placeholder="Tiêu đề" multiple>
-            </div>
-            <div class="form-group">
-              <input type="button" value="Send Message" ng-click="send()" class="btn btn-primary py-3 px-5">
+              <button type="button" ng-disabled="formfb.$invalid" ng-click="send()"
+                class="btn btn-primary py-3 px-5">{{language.contact_send}}</button>
             </div>
           </form>
+
         </div>
 
         <div class="col-md-6 d-flex">
@@ -98,9 +102,9 @@
         <div class="col-md-12 text-center">
           <div class="img" style="background-image: url(images/bg_2.jpg);">
             <div class="overlay"></div>
-            <h2>We Are Pacific A Travel Agency</h2>
-            <p>We can manage your dream building A small river named Duden flows by their place</p>
-            <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Ask For A Quote</a></p>
+            <h2>{{language.tour_stt}}</h2>
+            <p>{{language.tour_stt1}}</p>
+            <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">{{language.tour_stt2}}</a></p>
           </div>
         </div>
       </div>

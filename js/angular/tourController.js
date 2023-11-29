@@ -1,6 +1,7 @@
 
 app.controller("tourController", function($scope, $http, $rootScope) {
 
+
   $scope.tourr = [];
   $scope.currentPage = 0;
   $scope.pageSize = 6;
@@ -42,6 +43,8 @@ app.controller("tourController", function($scope, $http, $rootScope) {
             imageUrls = imageUrls.map(url => url.trim());
             tour.images = imageUrls;
           }
+
+
         });
 
         $scope.updatePagedTours(); // Gọi updatePagedTours() sau khi gán dữ liệu
