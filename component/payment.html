@@ -49,7 +49,7 @@
       </div>
       <div class="form-group">
         <label for="member">{{language.payment_member}}</label>
-        <input type="number" class="form-control" name="txtmember" ng-model="orders.member" min="0" id="member" placeholder="{{language.payment_numberof}}" required>
+        <input type="number" class="form-control" name="txtmember" ng-change="memberChange()" ng-model="orders.member" min="0" id="member" placeholder="{{language.payment_numberof}}" required>
         <span style="color: red; font-size: 15px;" ng-show="formPayment.txtmember.$error.min">Số lượng thành viên không được nhập
           số âm.</span>
         <span style="color: red; font-size: 15px;"
@@ -68,7 +68,7 @@
       </div>
       <div class="form-group">
         <label for="member">{{language.payment_all}}</label>
-        <input type="number" class="form-control" id="member" ng-model="orders.price" disabled placeholder="VND"
+        <input type="text" class="form-control" id="member" ng-model="orders.price" disabled placeholder="VND"
           required>
       </div>
       <div class="form-group">

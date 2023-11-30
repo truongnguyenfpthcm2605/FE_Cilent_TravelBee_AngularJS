@@ -1,33 +1,61 @@
-app.controller("paymentController", function ($scope, $http, $rootScope, $location,$routeParams) {
+app.controller("paymentController", function ($scope, $http, $rootScope, $location, $routeParams) {
 
-     $scope.planourId = $routeParams.planourId
+     $scope.planourId = $routeParams.id
      $scope.price = $routeParams.price
-     console.log($scope.price)
+     $scope.discountAmount = ""
+     $scope.orders = {
+          planTourId: $scope.planourId,
+          emailAccount: $rootScope.email,
+          price: $scope.price,
+          status: "Đã Thanh Toán",
+          qrcode: "travelbee"
+     }
+     $scope.initialPrice = $scope.orders.price;
 
-     $scope.orders = {}
-     $scope.orders.voucher = 'N'
-     let labelvoucher = document.getElementById("label-voucher")
+     $scope.memberChange = function () {
+          if ($scope.orders.member == undefined) {
+               $scope.orders.member = 1;
+          }
+
+          $scope.orders.price = $scope.initialPrice * $scope.orders.member;
+          
+     };
+
 
 
      $scope.payment = function () {
-          console.log($scope.orders)
-          $location.url("m/ain")
+          if ($scope.orders.voucher == "") {
+               $scope.orders.voucher = "Không có"
+          }
+          $scope.orders = JSON.stringify($scope.orders)
+          $location.path("/qrcodepayment/"+ $scope.orders)
+
      }
 
-     
 
+     $scope.orders.voucher = ''
+     let labelvoucher = document.getElementById("label-voucher")
      $scope.checkvoucher = function () {
-          console.log($scope.orders.voucher)
+          if ($scope.orders.voucher == "") {
+               $scope.orders.voucher = "No-voucher"
+          }
           $http.get($rootScope.url + '/api/v1/home/voucher/' + $scope.orders.voucher)
                .then(function (response) {
-                    labelvoucher.innerHTML = response.data.title + ' Giảm giá ' + response.data.discount +"%"
+                    labelvoucher.innerHTML = response.data.title + ' Giảm giá ' + response.data.discount + "%"
                     labelvoucher.style.color = "green"
                     labelvoucher.style.fontSize = "15px"
+                    $scope.discountAmount = $scope.orders.price * (response.data.discount / 100);
+                    $scope.orders.price = $scope.orders.price - $scope.discountAmount;
                })
                .catch(function (error) {
                     labelvoucher.innerHTML = 'Không tìm thấy voucher'
                     labelvoucher.style.color = "red"
                     labelvoucher.style.fontSize = "15px"
+                    $scope.orders.price = $scope.price
+                    if ($scope.orders.member != undefined) {
+                         $scope.orders.price = $scope.orders.price * $scope.orders.member
+                    }
+
                });
 
      }

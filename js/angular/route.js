@@ -29,7 +29,7 @@ app.config(function($routeProvider){
         templateUrl : "./component/location.html",
         controller : 'TourDetailController'
     })
-    .when("/payment/:planourId/:price",{
+    .when("/payment/:id/:price",{
         templateUrl : "./component/payment.html",
         controller : 'paymentController'
     })
@@ -45,6 +45,10 @@ app.config(function($routeProvider){
     })
     .when("/changepass",{
         templateUrl : "./component/changepass.html"
+    })
+    .when("/qrcodepayment/:orders",{
+        templateUrl : "./component/qrcodepayment.html",
+        controller : "qrcodepaymentController"
     })
     .when("/information",{
         templateUrl : "./component/information.html"

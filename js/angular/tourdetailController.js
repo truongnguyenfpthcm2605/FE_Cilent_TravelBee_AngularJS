@@ -1,21 +1,24 @@
 // TourDetailController
-app.controller('TourDetailController', function ($scope, $rootScope, $http, $routeParams, $anchorScroll,$location) {
+app.controller('TourDetailController', function ($scope, $rootScope, $http, $routeParams, $anchorScroll, $location) {
 
 
 
   let tourId = JSON.parse($routeParams.tourId);
 
-  setTimeout(function(){
+  
+  
+  $scope.payment = function () {
     let selectedPlantour = document.getElementsByName('selectedPlantour')[0];
     let selectedValue = selectedPlantour.value;
-    console.log(selectedValue);
-    $scope.plantourId = selectedValue
-  },2000)
-
-
-  $scope.payment = function(){
-
-  }
+    console.log(selectedValue)
+    
+    if ($rootScope.email == '') {
+      $location.url("/login");
+    } else {
+      $location.path("/payment/" + selectedValue + "/" + $scope.tour.price);
+    }
+  };
+  
 
   $http.get($rootScope.url + '/api/v1/tour/view/' + tourId)
     .then(function (response) {
@@ -35,9 +38,7 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
     return tour.id === tourId;
   });
 
-  $scope.payment = function(){
-    $location.path("/payment/"+$scope.plantourId+"/"+$scope.tour.price)
-  }
+
 
 
 
