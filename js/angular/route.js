@@ -6,10 +6,11 @@ app.config(function($routeProvider){
         controller : 'mainController'
     })
     .when("/contact",{
-        templateUrl : "./component/contact.html"
+        templateUrl : "./component/contact.html",
+        controller : 'feedbackController'
     })
     .when("/tour",{
-        templateUrl : "./component/tour.html",
+        templateUrl : "./component/tourdetail.html",
         controller : 'tourController'
     })
     .when("/tourdetail/:tourId",{
@@ -39,7 +40,8 @@ app.config(function($routeProvider){
         templateUrl : "./component/sign-in.html"
     })
     .when("/register",{
-        templateUrl : "./component/sign-up.html"
+        templateUrl : "./component/sign-up.html",
+         controller : 'registerController'
     })
     .when("/changepass",{
         templateUrl : "./component/changepass.html"
@@ -49,6 +51,9 @@ app.config(function($routeProvider){
     })
     .when("/history",{
         templateUrl : "./component/historyticket.html"
+    })
+    .when("/payment",{
+        templateUrl : "./component/payment.html",
     })
     .otherwise({
        redirectTo : "/main"
@@ -69,3 +74,4 @@ app.run(function ($rootScope) {
         alert('loading Templet Errors')
     })
 })
+
