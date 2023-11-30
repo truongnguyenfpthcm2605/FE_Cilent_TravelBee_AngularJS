@@ -73,16 +73,11 @@
                   <p>{{ tour.description }}</p>
 
                   <br>
+                  <select ng-if="plantour && plantour.length > 0" class="form-control" id="" style="margin-bottom: 10px; outline: none; border-radius: 10px;">
+                      <option ng-repeat="item in plantour" value="{{item.id}}">{{item.stardate | date:'dd/MM/yyyy'}} - {{item.enddate | date:'dd/MM/yyyy'}}</option>
+                  </select>
 
                   <div class="add-to-cart">
-                    <!-- <div class="qty-label">
-                      Qty
-                      <div class="input-number">
-                        <input type="number">
-                        <span class="qty-up">+</span>
-                        <span class="qty-down">-</span>
-                      </div>
-                    </div> -->
                     <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> <a href="#!payment">đặt ngay</a>
                     </button>
                   </div>
