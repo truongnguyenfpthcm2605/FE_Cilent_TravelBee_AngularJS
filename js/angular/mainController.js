@@ -1,7 +1,4 @@
-app.controller("mainController", function($scope, $http,$rootScope) {
-    $scope.title = "Khám Phá Sở Thích Của Bạn Ở Nơi Chúng Tôi"
-    $scope.welcome = "Welcome to Travel Bee"
-    $scope.travel = "Du lịch ở bất cứ mọi nơi ở Việt Nam, hãy đi cùng chúng tôi !"
+app.controller("mainController", function ($scope, $http, $rootScope) {
     $scope.tourOutstanding = []
     $scope.weather = function () {
         $http.get('https://weatherapi-com.p.rapidapi.com/forecast.json?q=Ho Chi Minh City&days=1&lang=vi', {
@@ -11,36 +8,24 @@ app.controller("mainController", function($scope, $http,$rootScope) {
             }
         }).then(response => {
             $scope.today = {
-                location : response.data.location.localtime,
-                name :  response.data.location.name ,
-                status : response.data.current.condition.text,
-                C : response.data.current.temp_c
+                location: response.data.location.localtime,
+                name: response.data.location.name,
+                status: response.data.current.condition.text,
+                C: response.data.current.temp_c
             }
-        
+
         }).catch(error => {
             console.log(error)
         })
     }
 
-    $scope.loadTour = function(){
-        $http.get($rootScope.url + "/api/v1/home/tourOutstanding")
-        .then(response => {
-            $scope.tourOutstanding = response.data;
-            $scope.tourOutstanding.forEach(tour => {
-              if (tour.images) {
-                let imageUrls = tour.images.split(',');
-                imageUrls = imageUrls.map(url => url.trim());
-                tour.images = imageUrls;
-              }
-            });
+    $scope.tours = $rootScope.toursfirst
+    // Sắp xếp mảng tours theo thuộc tính view giảm dần
+    $scope.tours.sort(function (a, b) {
+        return b.views - a.views;
+    });
 
-          })
-          .catch(error => {
-          });
-    }
-
-
-
-    $scope.loadTour()
+    // Lấy ra 6 phần tử đầu tiên của mảng đã sắp xếp
+    $scope.tourOutstanding = $scope.tours.slice(0, 6);
     $scope.weather()
 });

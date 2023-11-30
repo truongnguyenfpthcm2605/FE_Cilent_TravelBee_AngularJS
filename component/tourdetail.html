@@ -73,12 +73,15 @@
                   <p>{{ tour.description }}</p>
 
                   <br>
-                  <select ng-if="plantour && plantour.length > 0" class="form-control" id="" style="margin-bottom: 10px; outline: none; border-radius: 10px;">
-                      <option ng-repeat="item in plantour" value="{{item.id}}">{{item.stardate | date:'dd/MM/yyyy'}} - {{item.enddate | date:'dd/MM/yyyy'}}</option>
-                  </select>
+                  <select ng-if="plantour && plantour.length > 0" class="form-control" id="" style="margin-bottom: 10px; outline: none; border-radius: 10px;" name="selectedPlantour">
+                    <option  ng-repeat="item in plantour" value="{{item.id}}">{{item.stardate | date:'dd/MM/yyyy'}} - {{item.enddate | date:'dd/MM/yyyy'}}</option>
+                </select>
+                
+                
+
 
                   <div class="add-to-cart">
-                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> <a href="#!payment">đặt ngay</a>
+                    <button ng-click="payment()" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> đặt ngay
                     </button>
                   </div>
 
@@ -410,7 +413,7 @@
       </div>
 
       <!-- product -->
-      <div class="col-md-3 col-xs-6" ng-repeat="tour in tourr" ng-if="$index < 4">
+      <div class="col-md-3 col-xs-6" ng-repeat="tour in toursfirst" ng-if="$index < 4">
         <div class="product" >
           <div class="product-img" >
             <img ng-src="{{ tour.images[3] }}" alt="" style="height: 170px;">

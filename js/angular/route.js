@@ -29,7 +29,7 @@ app.config(function($routeProvider){
         templateUrl : "./component/location.html",
         controller : 'TourDetailController'
     })
-    .when("/payment",{
+    .when("/payment/:planourId/:price",{
         templateUrl : "./component/payment.html",
         controller : 'paymentController'
     })
@@ -52,9 +52,7 @@ app.config(function($routeProvider){
     .when("/history",{
         templateUrl : "./component/historyticket.html"
     })
-    .when("/payment",{
-        templateUrl : "./component/payment.html",
-    })
+
     .otherwise({
        redirectTo : "/main"
     })

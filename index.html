@@ -55,10 +55,10 @@
 	<link rel="stylesheet" href="css1/font-awesome.min.css">
 
 	<!-- Custom stlylesheet -->
-	
+
 	<link type="text/css" rel="stylesheet" href="css1/style.css" />
 	<link rel="stylesheet" href="css/test3.css">
-	
+
 	<link rel="stylesheet" href="css/modal.css">
 </head>
 
@@ -69,7 +69,7 @@
 		ng-include="'./component/header.html'">
 	</nav>
 	<main ng-view></main>
-	
+
 	<footer class="ftco-footer bg-bottom ftco-no-pt" style="background-image: url(images/bg_3.jpg);"
 		ng-include="'./component/footer.html'">
 	</footer>
@@ -125,6 +125,24 @@
 			$rootScope.token = ""
 			$rootScope.authorities = []
 			$scope.today = {}
+			
+			$rootScope.toursfirst = []
+			$scope.findAll = function () {
+				$http.get($rootScope.url + "/api/v1/tour/all")
+					.then(response => {
+						$rootScope.toursfirst = response.data;
+						$scope.toursfirst.forEach(tour => {
+							if (tour.images) {
+								let imageUrls = tour.images.split(',');
+								imageUrls = imageUrls.map(url => url.trim());
+								tour.images = imageUrls;
+							}
+						});
+					})
+					.catch(error => {
+					});
+			};
+			$scope.findAll();
 
 			$scope.logout = function () {
 				$http.get($rootScope.url + "/api/v1/auth/logout")
@@ -231,7 +249,7 @@
 						tour_stt: "CHÚNG TÔI LÀ ĐẠI LÝ DU LỊCH PACIFIC",
 						tour_stt1: "Chúng tôi có thể quản lý tòa nhà mơ ước của bạn Một dòng sông nhỏ mang tên Duden chảy ngang qua nơi họ.",
 						tour_stt2: "Yêu Cầu Báo Giá",
-						tour_page : "Trang",
+						tour_page: "Trang",
 						contact_address: "Địa Chỉ",
 						contact_phone: "Điện Thoại Liên Hệ",
 						contact_question: "Hỏi Đáp",
@@ -339,7 +357,7 @@
 						tour_stt: "WE ARE PACIFIC A TRAVEL AGENCY",
 						tour_stt1: "We can manage your dream building A small river named Duden flows by their place",
 						tour_stt2: "Ask For A Quote",
-						tour_page : "Page",
+						tour_page: "Page",
 						contact_address: "Address",
 						contact_phone: "Hotline PhoneNumber",
 						contact_question: "Question",
@@ -406,12 +424,12 @@
 			$rootScope.changeLanguage('vn')
 
 		})
-		
-  
+
+
 
 	</script>
 
-	
+
 	<script src="js/angular/mainController.js"></script>
 	<script src="js/angular/loginController.js"></script>
 
@@ -451,7 +469,7 @@
 	<script src="js1/jquery.zoom.min.js"></script>
 	<script src="js1/main.js"></script>
 	<script src="js/image.js"></script>
-	
+
 
 </body>
 

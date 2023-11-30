@@ -1,4 +1,8 @@
-app.controller("paymentController", function ($scope, $http, $rootScope, $location) {
+app.controller("paymentController", function ($scope, $http, $rootScope, $location,$routeParams) {
+
+     $scope.planourId = $routeParams.planourId
+     $scope.price = $routeParams.price
+     console.log($scope.price)
 
      $scope.orders = {}
      $scope.orders.voucher = 'N'
