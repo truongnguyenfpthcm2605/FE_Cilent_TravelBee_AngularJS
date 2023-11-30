@@ -59,11 +59,12 @@
       <div class="form-group">
         <label for="voucher">{{language.payment_voucher}}</label>
         <div class="input-group">
-          <input type="text" class="form-control" id="voucher" ng-modeel="orders.voucher" placeholder="{{language.payment_intervoucher}}">
+          <input type="text" class="form-control" id="voucher"  ng-model="orders.voucher" placeholder="{{language.payment_intervoucher}}">
           <div class="input-group-append">
-            <button class="btn btn-primary" type="button">{{language.payment_check}}</button>
+            <button class="btn btn-primary" ng-click="checkvoucher()" type="button">{{language.payment_check}}</button>
           </div>
         </div>
+        <span id="label-voucher"></span>
       </div>
       <div class="form-group">
         <label for="member">{{language.payment_all}}</label>
