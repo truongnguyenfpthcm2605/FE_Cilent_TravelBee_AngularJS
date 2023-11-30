@@ -10,7 +10,7 @@ app.config(function($routeProvider){
         controller : 'feedbackController'
     })
     .when("/tour",{
-        templateUrl : "./component/tourdetail.html",
+        templateUrl : "./component/tour.html",
         controller : 'tourController'
     })
     .when("/tourdetail/:tourId",{

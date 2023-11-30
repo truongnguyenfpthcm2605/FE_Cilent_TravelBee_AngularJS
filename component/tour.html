@@ -24,7 +24,7 @@
                             <div class="row no-gutters">
                                 <div class="col-lg d-flex">
                                     <div class="form-group p-4 border-0">
-                                        <label for="#">Destination</label>
+                                        <label for="#">{{language.tour_search}}</label>
                                         <div class="form-field">
                                             <div class="icon"><span class="fa fa-search"></span></div>
                                             <input type="text" class="form-control" ng-model="searchKeyword" placeholder="Search place">
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="col-lg d-flex">
                                     <div class="form-group p-4">
-                                        <label for="#">Check-in date</label>
+                                        <label for="#">{{language.tour_checkin}}</label>
                                         <div class="form-field">
                                             <div class="icon"><span class="fa fa-calendar"></span></div>
                                             <input type="date" class="form-control checkin_date"
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-lg d-flex">
                                     <div class="form-group p-4">
-                                        <label for="#">Check-out date</label>
+                                        <label for="#">{{language.tour_checkout}}</label>
                                         <div class="form-field">
                                             <div class="icon"><span class="fa fa-calendar"></span></div>
                                             <input type="date" class="form-control checkout_date"
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="col-lg d-flex">
                                     <div class="form-group p-4">
-                                        <label for="#">Price Limit</label>
+                                        <label for="#">{{language.tour_price}}</label>
                                         <div class="form-field">
                                             <div class="select-wrap">
                                                 <div class="icon"><span class="fa fa-chevron-down"></span></div>
@@ -80,7 +80,7 @@
                                 <div class="col-lg d-flex">
                                     <div class="form-group d-flex w-100 border-0">
                                         <div class="form-field w-100 align-items-center d-flex">
-                                            <input type="submit" value="Search"
+                                            <input type="submit" value="{{language.tour_searchh}}"
                                                 class="align-self-stretch form-control btn btn-primary">
                                         </div>
                                     </div>
@@ -103,8 +103,8 @@
                         </a>
                         <div class="text p-4" >
                             <span class="days">8 Days Tour</span>
-                            <h3><a href="#!blogsingle">{{item.title}}</a></h3>
-                            <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
+                            <h3><a href="#!tourdetail/{{item.id}}">{{item.title}}</a></h3>
+                            <p class="location"><span class="fa fa-map-marker"></span> Ifugao, Philippines</p>
                             <ul>
                                 <li><span class="flaticon-shower"></span>2</li>
                                 <li><span class="flaticon-king-size"></span>3</li>
@@ -115,42 +115,29 @@
                 </div>
                
             </div>
-            <!-- <div class="row mt-5">
-                <div class="col text-center">
-                    <div class="block-27">
-                        <ul>
-                            <li><a href="#">&lt;</a></li>
-                            <li class="active"><span>1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&gt;</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div> -->
+
             <div class="page">
                 <button class="prev-btn" ng-click="prevPage()" ng-disabled="currentPage === 0">Trước</button>
-               <span class="page-number"> Trang {{ currentPage + 1 }} / {{ pageCount() }}</span>
+               <span class="page-number"> {{language.tour_page}} {{ currentPage + 1 }} / {{ pageCount() }}</span>
                 <button class="next-btn" ng-click="nextPage()" ng-disabled="currentPage === pageCount() - 1">Tiếp</button>
               </div>
         </section>
 
 
 
-    <section class="ftco-intro ftco-section ftco-no-pt">
-        <div class="container">
-            <div class="row justify-content-center">
+        <section class="ftco-intro ftco-section ftco-no-pt">
+            <div class="container">
+              <div class="row justify-content-center">
                 <div class="col-md-12 text-center">
-                    <div class="img" style="background-image: url(images/bg_2.jpg);">
-                        <div class="overlay"></div>
-                        <h2>We Are Pacific A Travel Agency</h2>
-                        <p>We can manage your dream building A small river named Duden flows by their place</p>
-                        <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Ask For A Quote</a></p>
-                    </div>
+                  <div class="img" style="background-image: url(images/bg_2.jpg);">
+                    <div class="overlay"></div>
+                    <h2>{{language.tour_stt}}</h2>
+                    <p>{{language.tour_stt1}}</p>
+                    <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">{{language.tour_stt2}}</a></p>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-    </section>
+          </section>
+        
 </div>
