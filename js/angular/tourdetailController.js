@@ -1,5 +1,5 @@
 // TourDetailController
-app.controller('TourDetailController', function($scope, $rootScope,$http, $routeParams) {
+app.controller('TourDetailController', function($scope, $rootScope,$http, $routeParams, $anchorScroll) {
 
   
 
@@ -111,5 +111,27 @@ app.controller('TourDetailController', function($scope, $rootScope,$http, $route
     console.log('modalVisible:', newVal);
   });
 
-  
+  $scope.findAll = function() {
+    $http.get($rootScope.url + "/api/v1/tour/all")
+      .then(response => {
+        $scope.tourr = response.data;
+        $scope.tourr.forEach(tour => {
+          if (tour.images) {
+            let imageUrls = tour.images.split(',');
+            imageUrls = imageUrls.map(url => url.trim());
+            tour.images = imageUrls;
+          }
+        });
+
+        $scope.updatePagedTours(); // Gọi updatePagedTours() sau khi gán dữ liệu
+        console.log('Success', response);
+      })
+      .catch(error => {
+        console.log('Error', error);
+      });
+  };
+ 
+  $scope.findAll();
+  $anchorScroll();
+ 
 });
