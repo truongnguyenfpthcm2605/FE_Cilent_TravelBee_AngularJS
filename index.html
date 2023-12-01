@@ -125,7 +125,7 @@
 			$rootScope.token = ""
 			$rootScope.authorities = []
 			$scope.today = {}
-			
+
 			$rootScope.toursfirst = []
 			$scope.findAll = function () {
 				$http.get($rootScope.url + "/api/v1/tour/all")
@@ -307,8 +307,27 @@
 						payment_intervoucher: "Nhập mã giảm giá",
 						payment_all: "Thành tiền",
 						payment_pm: "Hình thức thanh toán",
-						payment_ok: "Thanh toán"
-
+						payment_ok: "Thanh toán",
+						in4_payment: "Thanh Toán",
+						in4_cccd: "CCCD",
+						in4_nhapemail: "Nhập email",
+						in4_phone: "Số điên thoại",
+						in4_nhapsdt: "Nhập SDT",
+						in4_member: "Thành viên",
+						in4_numberof: "Số lượng thành viên",
+						in4_voucher: "Mã giảm giá",
+						in4_check: "Kiểm tra",
+						in4_intervoucher: "Nhập mã giảm giá",
+						in4_all: "Thành tiền",
+						in4_pm: "Hình thức thanh toán",
+						in4_ok: "Thanh toán",
+						in4_nametour: "Tên Chuyến Đi",
+						in4_startday: "Ngày Khời Hành",
+						in4_endday: "Ngày Kết Thúc",
+						in4_fullname: "Họ và Tên",
+						in4_address: "Địa Chỉ", 
+						in4_note: "Ghi Chú",
+						in4_passport: "CCCD"
 					}
 				} else {
 					$rootScope.language = {
@@ -416,7 +435,26 @@
 						payment_all: "Money",
 						payment_pm: "Payments",
 						payment_ok: "Payment",
-
+						in4_payment: "Payment",
+						in4_cccd: "Citizen Identification Card",
+						in4_nhapemail: "Enter email",
+						in4_phone: "Phone",
+						in4_nhapsdt: "Enter phone number",
+						in4_member: "Member",
+						in4_check: "Check",
+						in4_numberof: "Number of member",
+						in4_voucher: "Voucher",
+						in4_intervoucher: "Enter voucher",
+						in4_all: "Money",
+						in4_pm: "Payments",
+						in4_ok: "Payment",
+						in4_nametour: "Name Tour",
+						in4_startday: "Start Day",
+						in4_endday: "End Day",
+						in4_fullname: "Full Name",
+						in4_address: "Address",
+						in4_note: "Note",
+						in4_passport: "Citizen Identification Card"
 					}
 
 				}
@@ -441,7 +479,7 @@
 
 	<script src="js/angular/tourdetailController.js"></script>
 	<script src="js/angular/paymentController.js"></script>
-
+	<script src="js/angular/inforUser.js"></script>
 	<script src="js/angular/informationController.js"></script>
 	<script src="js/angular/qrcodepaymentController.js"></script>
 	<script src="js/customjs/login.js"></script>

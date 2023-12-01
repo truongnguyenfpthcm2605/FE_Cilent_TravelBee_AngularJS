@@ -1,79 +1,78 @@
-
-app.config(function($routeProvider){
-    $routeProvider
-    .when("/main",{
-        templateUrl : "./component/main.html",
-        controller : 'mainController'
+app.config(function ($routeProvider) {
+  $routeProvider
+    .when("/main", {
+      templateUrl: "./component/main.html",
+      controller: "mainController",
     })
-    .when("/contact",{
-        templateUrl : "./component/contact.html",
-        controller : 'feedbackController'
+    .when("/contact", {
+      templateUrl: "./component/contact.html",
+      controller: "feedbackController",
     })
-    .when("/tour",{
-        templateUrl : "./component/tour.html",
-        controller : 'tourController'
+    .when("/tour", {
+      templateUrl: "./component/tour.html",
+      controller: "tourController",
     })
-    .when("/tourdetail/:tourId",{
-        templateUrl : "./component/tourdetail.html",
-        controller : 'TourDetailController'
+    .when("/tourdetail/:tourId", {
+      templateUrl: "./component/tourdetail.html",
+      controller: "TourDetailController",
     })
-    .when("/hotel/:tourId",{
-        templateUrl : "./component/hotel.html",
-        controller : 'TourDetailController'
+    .when("/hotel/:tourId", {
+      templateUrl: "./component/hotel.html",
+      controller: "TourDetailController",
     })
-    .when("/transport/:tourId",{
-        templateUrl : "./component/transport.html",
-        controller : 'TourDetailController'
+    .when("/transport/:tourId", {
+      templateUrl: "./component/transport.html",
+      controller: "TourDetailController",
     })
-    .when("/location/:tourId",{
-        templateUrl : "./component/location.html",
-        controller : 'TourDetailController'
+    .when("/location/:tourId", {
+      templateUrl: "./component/location.html",
+      controller: "TourDetailController",
     })
-    .when("/payment/:id/:price",{
-        templateUrl : "./component/payment.html",
-        controller : 'paymentController'
+    .when("/payment", {
+      templateUrl: "./component/payment.html",
+      controller: "paymentController",
     })
-    .when("/blogsingle",{
-        templateUrl : "./component/blog-single.html"
+    .when("/blogsingle", {
+      templateUrl: "./component/blog-single.html",
     })
-    .when("/login",{
-        templateUrl : "./component/sign-in.html"
+    .when("/login", {
+      templateUrl: "./component/sign-in.html",
     })
-    .when("/register",{
-        templateUrl : "./component/sign-up.html",
-         controller : 'registerController'
+    .when("/register", {
+      templateUrl: "./component/sign-up.html",
+      controller: "registerController",
     })
-    .when("/changepass",{
-        templateUrl : "./component/changepass.html"
+    .when("/changepass", {
+      templateUrl: "./component/changepass.html",
     })
-    .when("/qrcodepayment/:orders",{
-        templateUrl : "./component/qrcodepayment.html",
-        controller : "qrcodepaymentController"
+    .when("/qrcodepayment/:orders", {
+      templateUrl: "./component/qrcodepayment.html",
+      controller: "qrcodepaymentController",
     })
-    .when("/information",{
-        templateUrl : "./component/information.html"
+    .when("/information", {
+      templateUrl: "./component/information.html",
     })
-    .when("/history",{
-        templateUrl : "./component/historyticket.html"
+    .when("/history", {
+      templateUrl: "./component/historyticket.html",
+    })
+    .when("/inforuser", {
+      templateUrl: "./component/inforUser.html",
+      controller: "inforUserController",
     })
 
     .otherwise({
-       redirectTo : "/main"
-    })
-    
-})
+      redirectTo: "/payment",
+    });
+});
 app.run(function ($rootScope) {
-    $rootScope.$on("$routeChangeStart", function () {
-        $rootScope.loading = true
-
-    })
-    $rootScope.$on("$routeChangeSuccess", function () {
-        $rootScope.loading = false
-
-    })
-    $rootScope.$on("$routeChangeError", function () {
-        $rootScope.loading = false
-        alert('loading Templet Errors')
-    })
-})
-
+  $rootScope.$on("$routeChangeStart", function () {
+    $rootScope.loading = true;
+  });
+  $rootScope.$on("$routeChangeSuccess", function () {
+    $rootScope.loading = false;
+  });
+  $rootScope.$on("$routeChangeError", function () {
+    $rootScope.loading = false;
+    alert("loading Templet Errors");
+  });
+});
