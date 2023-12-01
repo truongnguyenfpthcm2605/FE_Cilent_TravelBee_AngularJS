@@ -2,7 +2,26 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
 
 
     $scope.orders = JSON.parse($routeParams.orders)
-    console.log($scope.orders)
+
+    $scope.random = ""
+    let content = document.getElementById('bankcontent')
+
+
+    function generateRandomText(length) {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let result = '';
+
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            result += characters.charAt(randomIndex);
+        }
+
+        return result;
+    }
+
+
+    $scope.random = generateRandomText(10); // Thay đổi 10 thành chiều dài mong muốn
+    content.innerText = $scope.random
     $scope.bank = {
         ID: "123",
         AMOUNT: $scope.orders.price,
@@ -11,15 +30,26 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
         CURRENCY: "sdgsd",
         DATE: "SSDSG"
     }
-    console.log($scope.bank)
 
-    $http.post($rootScope.url + "/api/v1/orders/save", $scope.orders, {
-        headers: {
-            'Authorization': 'Bearer ' + $rootScope.token
-        }
-    }).then(resopnse => {
-        console.log(resopnse.data.id)
-        $http.post($rootScope.url + "/api/v1/payment/save?name=" + $rootScope.fullname + "&id=" + resopnse.data.id, $scope.bank, {
+
+    $scope.saveOrders = function () {
+
+        $http.post($rootScope.url + "/api/v1/orders/save", $scope.orders, {
+            headers: {
+                'Authorization': 'Bearer ' + $rootScope.token
+            }
+        }).then(resopnse => {
+            $scope.paymentsave(resopnse.data.id)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+    setTimeout(function(){
+        $scope.saveOrders()
+    },1000)
+
+    $scope.paymentsave = function (id) {
+        $http.post($rootScope.url + "/api/v1/payment/save?name=" + $rootScope.fullname + "&id=" + id, $scope.bank, {
             headers: {
                 'Authorization': 'Bearer ' + $rootScope.token
             }
@@ -33,9 +63,7 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
         }).catch(error => {
             console.log(error)
         })
-    }).catch(error => {
-        console.log(error)
-    })
+    }
 
     $scope.check = 60
     let countdownInterval = setInterval(function () {
@@ -60,25 +88,7 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
         }
     }, 1000);
 
-    $scope.random = ""
-    let content = document.getElementById('bankcontent')
 
-
-    function generateRandomText(length) {
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        let result = '';
-
-        for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * characters.length);
-            result += characters.charAt(randomIndex);
-        }
-
-        return result;
-    }
-
-
-    $scope.random = generateRandomText(10); // Thay đổi 10 thành chiều dài mong muốn
-    content.innerText = $scope.random
 
 
 
