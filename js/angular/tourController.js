@@ -7,7 +7,6 @@ app.controller("tourController", function($scope, $http, $rootScope) {
   $scope.pageSize = 6;
   $scope.selectedTour = null;
 
-  
 
   $scope.updatePagedTours = function() {
     var start = $scope.currentPage * $scope.pageSize;

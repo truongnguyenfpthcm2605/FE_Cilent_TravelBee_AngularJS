@@ -43,6 +43,8 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
 
 
 
+
+
   $http.get($rootScope.url + '/api/v1/tour/details/' + tourId)
     .then(function (response) {
       $scope.hotel = response.data[0].hotel; // Truy cập vào thuộc tính 'hotel' trong 'response.data'
@@ -115,7 +117,6 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
     $scope.modalVisible = false;
   };
   $scope.$watch('modalVisible', function (newVal) {
-    console.log('modalVisible:', newVal);
   });
 
 

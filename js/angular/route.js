@@ -1,67 +1,56 @@
 app.config(function ($routeProvider) {
   $routeProvider
     .when("/main", {
-      templateUrl: "./component/main.html",
-      controller: "mainController",
+      templateUrl: "./component/main.html"
     })
     .when("/contact", {
-      templateUrl: "./component/contact.html",
-      controller: "feedbackController",
+      templateUrl: "./component/contact.html"
     })
     .when("/tour", {
       templateUrl: "./component/tour.html",
-      controller: "tourController",
+
     })
     .when("/tourdetail/:tourId", {
-      templateUrl: "./component/tourdetail.html",
-      controller: "TourDetailController",
+      templateUrl: "./component/tourdetail.html"
+
     })
     .when("/hotel/:tourId", {
-      templateUrl: "./component/hotel.html",
-      controller: "TourDetailController",
+      templateUrl: "./component/hotel.html"
     })
     .when("/transport/:tourId", {
-      templateUrl: "./component/transport.html",
-      controller: "TourDetailController",
+      templateUrl: "./component/transport.html"
     })
     .when("/location/:tourId", {
-      templateUrl: "./component/location.html",
-      controller: "TourDetailController",
+      templateUrl: "./component/location.html"
     })
-    .when("/payment", {
-      templateUrl: "./component/payment.html",
-      controller: "paymentController",
-    })
-    .when("/blogsingle", {
-      templateUrl: "./component/blog-single.html",
+    .when("/payment/:id/:price", {
+      templateUrl: "./component/payment.html"
     })
     .when("/login", {
-      templateUrl: "./component/sign-in.html",
+      templateUrl: "./component/sign-in.html"
     })
     .when("/register", {
-      templateUrl: "./component/sign-up.html",
-      controller: "registerController",
+      templateUrl: "./component/sign-up.html"
     })
     .when("/changepass", {
-      templateUrl: "./component/changepass.html",
+      templateUrl: "./component/changepass.html"
     })
     .when("/qrcodepayment/:orders", {
-      templateUrl: "./component/qrcodepayment.html",
-      controller: "qrcodepaymentController",
+      templateUrl: "./component/qrcodepayment.html"
     })
     .when("/information", {
-      templateUrl: "./component/information.html",
+      templateUrl: "./component/information.html"
     })
     .when("/history", {
-      templateUrl: "./component/historyticket.html",
+      templateUrl: "./component/historyticket.html"
     })
-    .when("/inforuser", {
-      templateUrl: "./component/inforUser.html",
-      controller: "inforUserController",
+    .when("/inforuser/:id", {
+      templateUrl: "./component/inforUser.html"
+
     })
 
     .otherwise({
-      redirectTo: "/payment",
+      redirectTo: "/main",
     });
 });
 app.run(function ($rootScope) {

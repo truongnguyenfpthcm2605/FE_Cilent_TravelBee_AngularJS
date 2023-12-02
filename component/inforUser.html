@@ -32,80 +32,72 @@
     </div>
 </section>
 
-<div class="container" ng-controller="inforUserController">
+<div class="container" ng-controller="inforUserController" style="width: 80%; margin: 0 auto;">
     <br>
     <h1 style="text-align: center;">Thông tin</h1>
     <div class="row">
         <div class="col-sm-8">
             <form>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">{{language.in4_fullname}}</label>
-                    <input type="text" ng-model="in4.fullname" class="form-control" id="exampleInputPassword1"
-                        placeholder="FullName" required disabled>
+                    <label>{{language.in4_fullname}}</label>
+                    <input type="text" ng-model="in4.account.fullname" class="form-control" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">{{language.in4_address}}</label>
-                    <input type="text" ng-model="in4.address" class="form-control" id="exampleInputPassword1"
-                        placeholder="Password" required disabled>
+                    <label>{{language.in4_passport}}</label>
+                    <input type="text" class="form-control" ng-model="in4.cccd" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="cccd">{{language.in4_passport}}</label>
-                    <input type="text" class="form-control" name="txtcccd" ng-model="in4.cccd"
-                        ng-pattern="/^[0-9]{12}$/" placeholder="CCCD:" required disabled>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="txtEmail" id="email" ng-model="in4.email"
-                        placeholder="{{language.in4_nhapemail}}" required disabled>
+                    <label>Email:</label>
+                    <input type="email" class="form-control" ng-model="in4.email" disabled>
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">{{language.in4_phone}}</label>
-                    <input type="text" class="form-control" name="txtnumberphone" ng-model="in4.numberphone"
-                        ng-pattern="/^[0-9]{10}$/" placeholder="{{language.in4_nhapsdt}}" required disabled>
+                    <label>{{language.in4_phone}}</label>
+                    <input type="text" class="form-control" ng-model="in4.numberphone" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">{{language.in4_nametour}}</label>
-                    <input type="datetime" ng-value="in4.updatedate" placeholder="{{language.in4_nametour}}"ng-model="in4.nametour"
-                        class="form-control" disabled>
+                    <label>{{language.in4_nametour}}</label>
+                    <input type="text" ng-model="in4.plantour.tour.title" class="form-control" disabled>
                 </div>
                 <div class="form-group">
                     <label for="member">{{language.in4_member}}</label>
-                    <input type="number" class="form-control" name="txtmember" ng-change="memberChange()"
-                        ng-model="in4.member" min="0" id="member" placeholder="{{language.in4_numberof}}" required
-                        disabled>
+                    <input class="form-control" ng-model="in4.member" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">{{language.in4_startday}} </label>
-                    <input type="date" ng-model="in4.startday" class="form-control" id="exampleInputEmail1"
-                        aria-describedby="" placeholder="Enter email" required disabled>
+                    <label >{{language.in4_startday}} </label>
+                    <input type="text" ng-model="in4.plantour.stardate |  date:'dd/MM/yyyy' " class="form-control"  disabled>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">{{language.in4_endday}} </label>
-                    <input type="date" ng-model="in4.endday" class="form-control" id="exampleInputEmail1"
-                        aria-describedby="" placeholder="Enter email" required disabled>
+                    <input type="text" ng-model="in4.plantour.enddate |  date:'dd/MM/yyyy' " class="form-control" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="member">{{language.in4_all}}</label>
-                    <input type="text" class="form-control" id="member" ng-model="in4.price" disabled
-                        placeholder="VND" required>
+                    <label for="member">{{language.in4_all}} *VNĐ</label>
+                    <input type="text" class="form-control" id="member" ng-model="in4.price | currency: ''" disabled 
+                        required>
                 </div>
-                <button type="button" class="btn btn-primary py-3 px-4" style="margin-left: 40%;" ng-click="save()">Đặt Tour</button>
+                <div style="text-align: center;">
+                    <button type="button" class="btn btn-primary " ng-click="save()">
+                        HỦY VÉ <i class="fa-solid fa-trash"></i></button>
+                    <a href="#!tourdetail/{{in4.plantour.tour.id}}" class="btn btn-success " >XEM CHI TIẾT <i class="fa-solid fa-eye"></i>
+                    </a>
+                </div>
             </form>
         </div>
         <div class="col-sm-4">
             <div class="form-group" style="margin-top: 8%;">
                 <label for="member">{{language.in4_note}}</label>
-                <textarea class="form-control" name="" id="" cols="20" rows="10"></textarea>
+                <textarea class="form-control" name="" id="" ng-model="in4.plantour.description" cols="20" rows="10"></textarea>
             </div>
             <div class="form-group center" style=" margin: 0 auto; ">
-                <img class="" src="/images/destination-9.jpg" alt="" style="max-width: 90%; margin-left: 5%; border-radius: 5px;">
+                <img class="" src="{{in4.plantour.tour.images.split(',')[4]}}" alt=""
+                    style="max-width: 90%; margin-left: 5%; border-radius: 5px;">
             </div>
             <div class="qr-profile">
-                <img src="../images/qrcode.png" alt="">
+                <img src="{{in4.qrcode}}" alt="">
             </div>
         </div>
-        
+
     </div>
     <br>
 </div>

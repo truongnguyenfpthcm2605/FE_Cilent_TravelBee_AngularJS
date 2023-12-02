@@ -125,24 +125,11 @@
 			$rootScope.token = ""
 			$rootScope.authorities = []
 			$scope.today = {}
-
+			$rootScope.history = []
 			$rootScope.toursfirst = []
-			$scope.findAll = function () {
-				$http.get($rootScope.url + "/api/v1/tour/all")
-					.then(response => {
-						$rootScope.toursfirst = response.data;
-						$scope.toursfirst.forEach(tour => {
-							if (tour.images) {
-								let imageUrls = tour.images.split(',');
-								imageUrls = imageUrls.map(url => url.trim());
-								tour.images = imageUrls;
-							}
-						});
-					})
-					.catch(error => {
-					});
-			};
-			$scope.findAll();
+		
+
+			
 
 			$scope.logout = function () {
 				$http.get($rootScope.url + "/api/v1/auth/logout")
@@ -168,25 +155,7 @@
 						$location.path('/main');
 					})
 					.catch(error => {
-						$rootScope.fullname = ""
-						$rootScope.email = ""
-						$rootScope.token = ""
-						$rootScope.authorities = []
-						Swal.fire({
-							title: "Đăng xuất Thành Công",
-							width: 600,
-							icon: "success",
-							padding: "3em",
-							color: "#716add",
-							background: "#fff url(/images/trees.png)",
-							backdrop: `
-							rgba(0,0,123,0.4)
-							url("https://i.pinimg.com/originals/5b/cb/d0/5bcbd0bd7c033c9d6f0ef6bf96effd72.gif")
-							left top
-							no-repeat
-							`
-						});
-						$location.path('/main');
+						
 					})
 			}
 
@@ -325,7 +294,7 @@
 						in4_startday: "Ngày Khời Hành",
 						in4_endday: "Ngày Kết Thúc",
 						in4_fullname: "Họ và Tên",
-						in4_address: "Địa Chỉ", 
+						in4_address: "Địa Chỉ",
 						in4_note: "Ghi Chú",
 						in4_passport: "CCCD"
 					}
@@ -476,6 +445,8 @@
 
 	<script src="js/angular/tourController.js"></script>
 	<script src="js/angular/feedbackController.js"></script>
+	<script src="js/angular/historyController.js"></script>
+	<script src="js/angular/inforUserController.js"></script>
 
 	<script src="js/angular/tourdetailController.js"></script>
 	<script src="js/angular/paymentController.js"></script>

@@ -2,26 +2,24 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
 
 
     $scope.orders = JSON.parse($routeParams.orders)
+    $scope.pay =false
+    $scope.id = ''
 
     $scope.random = ""
     let content = document.getElementById('bankcontent')
 
-
     function generateRandomText(length) {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         let result = '';
-
         for (let i = 0; i < length; i++) {
             const randomIndex = Math.floor(Math.random() * characters.length);
             result += characters.charAt(randomIndex);
         }
-
         return result;
     }
 
 
-    $scope.random = generateRandomText(10); // Thay đổi 10 thành chiều dài mong muốn
-    content.innerText = $scope.random
+    $scope.random = generateRandomText(10);
     $scope.bank = {
         ID: "123",
         AMOUNT: $scope.orders.price,
@@ -31,22 +29,17 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
         DATE: "SSDSG"
     }
 
-
-    $scope.saveOrders = function () {
-
-        $http.post($rootScope.url + "/api/v1/orders/save", $scope.orders, {
-            headers: {
-                'Authorization': 'Bearer ' + $rootScope.token
-            }
-        }).then(resopnse => {
-            $scope.paymentsave(resopnse.data.id)
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-    setTimeout(function(){
-        $scope.saveOrders()
-    },1000)
+    $http.post($rootScope.url + "/api/v1/orders/save", $scope.orders, {
+        headers: {
+            'Authorization': 'Bearer ' + $rootScope.token
+        }
+    }).then(resopnse => {
+        $scope.paymentsave(resopnse.data.id)
+        $scope.pay = true
+        $scope.id = resopnse.data.orders.id
+    }).catch(error => {
+        console.log(error)
+    })
 
     $scope.paymentsave = function (id) {
         $http.post($rootScope.url + "/api/v1/payment/save?name=" + $rootScope.fullname + "&id=" + id, $scope.bank, {
@@ -54,18 +47,13 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
                 'Authorization': 'Bearer ' + $rootScope.token
             }
         }).then(resopnse => {
-            Swal.fire({
-                icon: "success",
-                title: "Thanh toán thành công !",
-                text: "Xem lịch sử vé của bạn",
-            });
-            $location.url("/main");
+          
         }).catch(error => {
             console.log(error)
         })
     }
 
-    $scope.check = 60
+    $scope.check = 180
     let countdownInterval = setInterval(function () {
         $scope.$apply(function () {
             $scope.check--;
@@ -74,7 +62,15 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
         // .then(response =>{
         //     console.log(response.data.AMOUNT)
         // })
-
+        if($scope.pay){
+            Swal.fire({
+                icon: "success",
+                title: "Thanh toán thành công !",
+                text: "Xem lịch sử vé của bạn",
+            });
+            clearInterval(countdownInterval);
+            $location.path("/inforuser/" + $scope.id);
+        }
         if ($scope.check <= 0) {
             clearInterval(countdownInterval);
             Swal.fire({

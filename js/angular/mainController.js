@@ -15,9 +15,27 @@ app.controller("mainController", function ($scope, $http, $rootScope) {
             }
 
         }).catch(error => {
-            console.log(error)
+
         })
     }
+
+
+    $scope.findAll = function () {
+        $http.get($rootScope.url + "/api/v1/tour/all")
+            .then(response => {
+                $rootScope.toursfirst = response.data;
+                $rootScope.toursfirst.forEach(tour => {
+                    if (tour.images) {
+                        let imageUrls = tour.images.split(',');
+                        imageUrls = imageUrls.map(url => url.trim());
+                        tour.images = imageUrls;
+                    }
+                });
+            })
+            .catch(error => {
+            });
+    };
+    $scope.findAll();
 
     $scope.tours = $rootScope.toursfirst
     // Sắp xếp mảng tours theo thuộc tính view giảm dần

@@ -18,7 +18,7 @@ app.controller("informationController", function ($scope, $http, $rootScope) {
                     }
                 })
                 .catch(error => {
-                    console.log('Error', error)
+               
                 })
         }
     }
@@ -87,7 +87,7 @@ app.controller("informationController", function ($scope, $http, $rootScope) {
                 text: "Thông tin của bạn",
                 icon: "error"
             });
-            console.log(error)
+          
         })
     }
 

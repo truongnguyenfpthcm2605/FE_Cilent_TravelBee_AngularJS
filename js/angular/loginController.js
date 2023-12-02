@@ -13,6 +13,7 @@ app.controller(
           .post($rootScope.url + "/api/v1/auth/login", $scope.login)
           .then((response) => {
             $scope.object = response.data;
+          
             $rootScope.email = $scope.object.email;
             $rootScope.fullname = $scope.object.fullName;
             $rootScope.authorities = $scope.object.authorities;
@@ -31,6 +32,7 @@ app.controller(
                       no-repeat
                     `,
             });
+            
             $location.path("/main");
           })
           .catch((error) => {
