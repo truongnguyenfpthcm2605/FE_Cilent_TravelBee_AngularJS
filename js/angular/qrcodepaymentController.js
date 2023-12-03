@@ -26,7 +26,7 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
         .then(response => {
             let money = response.data[0].AMOUNT;
             let contents = response.data[0].TYPE;
-            if (money == 29000 && contents == "sOUT") {
+            if (money == 29000 && contents == "OUT") {
                 $http.post($rootScope.url + "/api/v1/orders/save", $scope.orders,
                     {
                         headers: {
