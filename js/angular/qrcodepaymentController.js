@@ -2,12 +2,11 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
 
 
     $scope.orders = JSON.parse($routeParams.orders)
-    $scope.pay =false
+    $scope.pay = false
     $scope.id = ''
 
     $scope.random = ""
     let content = document.getElementById('bankcontent')
-
     function generateRandomText(length) {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         let result = '';
@@ -20,57 +19,52 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
 
 
     $scope.random = generateRandomText(10);
-    $scope.bank = {
-        ID: "123",
-        AMOUNT: $scope.orders.price,
-        TYPE: "In",
-        DESCRIPTION: $scope.random,
-        CURRENCY: "sdgsd",
-        DATE: "SSDSG"
-    }
+    content.innerHTML = $scope.random
 
-    $http.post($rootScope.url + "/api/v1/orders/save", $scope.orders, {
-        headers: {
-            'Authorization': 'Bearer ' + $rootScope.token
-        }
-    }).then(resopnse => {
-        $scope.paymentsave(resopnse.data.id)
-        $scope.pay = true
-        $scope.id = resopnse.data.orders.id
-    }).catch(error => {
-        console.log(error)
-    })
 
-    $scope.paymentsave = function (id) {
-        $http.post($rootScope.url + "/api/v1/payment/save?name=" + $rootScope.fullname + "&id=" + id, $scope.bank, {
-            headers: {
-                'Authorization': 'Bearer ' + $rootScope.token
+    $http.get("https://api.phukhuong79.com/ACB.php?data=MDM2MzU2MTYyOXxLaHVvbmcwNzA5MjAwNUB8MTI5NDAyMzF8MQ==")
+        .then(response => {
+            let money = response.data[0].AMOUNT;
+            let contents = response.data[0].TYPE;
+            if (money == 29000 && contents == "sOUT") {
+                $http.post($rootScope.url + "/api/v1/orders/save", $scope.orders,
+                    {
+                        headers: {
+                            'Authorization': 'Bearer ' + $rootScope.token
+                        }
+                    }).then(resopnse => {
+                        $rootScope.history.push(resopnse.data)
+                        $scope.id = resopnse.data.id
+                        $http.post($rootScope.url + "/api/v1/payment/save?name=" + $rootScope.fullname + "&id=" + $scope.id + "&money=" + money + "&content=" + contents)
+                            .then(resopnse => {
+                                $scope.pay = true
+                                $location.path("/inforuser/" + $scope.id);
+                            }).catch(error => {
+
+                            })
+                    }).catch(error => { })
             }
-        }).then(resopnse => {
-          
         }).catch(error => {
-            console.log(error)
+
         })
-    }
+
 
     $scope.check = 180
     let countdownInterval = setInterval(function () {
         $scope.$apply(function () {
             $scope.check--;
         });
-        // $http.get("https://api.phukhuong79.com/ACB.php?data=MDM2MzU2MTYyOXxLaHVvbmcwNzA5MjAwNUB8MTI5NDAyMzF8MQ==")
-        // .then(response =>{
-        //     console.log(response.data.AMOUNT)
-        // })
-        if($scope.pay){
+
+        if ($scope.pay) {
             Swal.fire({
                 icon: "success",
                 title: "Thanh toán thành công !",
                 text: "Xem lịch sử vé của bạn",
             });
             clearInterval(countdownInterval);
-            $location.path("/inforuser/" + $scope.id);
+            
         }
+
         if ($scope.check <= 0) {
             clearInterval(countdownInterval);
             Swal.fire({
@@ -83,9 +77,6 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
             });
         }
     }, 1000);
-
-
-
 
 
     $scope.copyToClipboard = function () {

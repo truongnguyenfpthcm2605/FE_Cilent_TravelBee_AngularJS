@@ -2,7 +2,6 @@ app.controller("paymentController", function ($scope, $http, $rootScope, $locati
 
      $scope.planourId = $routeParams.id
      $scope.price = $routeParams.price
-     console.log($scope.price)
      $scope.discountAmount = ""
      $scope.orders = {
           planTourId: $scope.planourId,

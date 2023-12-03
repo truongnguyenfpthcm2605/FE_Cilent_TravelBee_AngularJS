@@ -10,7 +10,6 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
   $scope.payment = function () {
     let selectedPlantour = document.getElementsByName('selectedPlantour')[0];
     let selectedValue = selectedPlantour.value;
-    console.log(selectedValue)
     
     if ($rootScope.email == '') {
       $location.url("/login");

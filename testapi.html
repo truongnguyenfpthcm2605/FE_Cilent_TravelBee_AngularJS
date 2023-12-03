@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
-    integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-cookies/1.8.3/angular-cookies.min.js"
-    integrity="sha512-eM4WApD53FS2pv6fIgY4E2utWB82WSp3QPeoemIzA9VeOv9vQ1UzYBKIkXAwS71SCilEFpfkwtCZHj2uSS3keQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-cookies/1.8.3/angular-cookies.min.js"
+        integrity="sha512-eM4WApD53FS2pv6fIgY4E2utWB82WSp3QPeoemIzA9VeOv9vQ1UzYBKIkXAwS71SCilEFpfkwtCZHj2uSS3keQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
+
 <body ng-app="myapp" ng-controller="myctrl">
     <button ng-click="callapi()">Goi api</button>
     <script>
-        
-		let app = angular.module("myapp", ['ngRoute', 'ngCookies'])
-		app.controller("myctrl", function ($scope, $http) {
-            $scope.callapi = function(){
-                $http.get('https://api.phukhuong79.com/ACB.php?data=MDM2MzU2MTYyOXxLaHVvbmcwNzA5MjAwNUB8MTI5NDAyMzF8MQ==').then(response =>{
-                    console.log(response.data)
-                }).catch(error =>{
-                    console.log(error)
-                })
+
+        let app = angular.module("myapp", ['ngRoute', 'ngCookies'])
+        app.controller("myctrl", function ($scope, $http,$rootScope) {
+            $rootScope.url = "http://localhost:8080"
+            $scope.callapi = function () {
+                $http.post('http://localhost:8080/api/v1/payment/save?name=Ntguyeen&id=175&money=3564&content=sdfsdfsdfds',
+                    {
+                        headers: {
+                            'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0cnVvbmdudnBzMjQwODNAZnB0LmVkdS52biIsImlhdCI6MTcwMTYxMDU0NCwiZXhwIjoxNzAxNjk0NTQ0fQ.I99NOIpq3L-6x5M-w4CMfTx1e2iMCSf0FpwdJlDyBJ4'
+                        }
+                    }).then(resopnse => {
+                        $scope.pay = true
+                        console.log(resopnse.data)
+
+                    }).catch(error => {
+                        console.log(error)
+                    })
             }
         })
     </script>
 </body>
+
 </html>
