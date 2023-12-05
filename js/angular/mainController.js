@@ -1,5 +1,4 @@
 app.controller("mainController", function ($scope, $http, $rootScope) {
-    $scope.tourOutstanding = []
     $scope.weather = function () {
         $http.get('https://weatherapi-com.p.rapidapi.com/forecast.json?q=Ho Chi Minh City&days=1&lang=vi', {
             headers: {
@@ -19,11 +18,17 @@ app.controller("mainController", function ($scope, $http, $rootScope) {
         })
     }
 
-
     $scope.findAll = function () {
         $http.get($rootScope.url + "/api/v1/tour/all")
             .then(response => {
                 $rootScope.toursfirst = response.data;
+                $scope.tours = $rootScope.toursfirst
+
+                $scope.tours.sort(function (a, b) {
+                    return b.views - a.views;
+                });
+                $scope.tourOutstanding = $scope.tours.slice(0, 6);
+
                 $rootScope.toursfirst.forEach(tour => {
                     if (tour.images) {
                         let imageUrls = tour.images.split(',');
@@ -37,13 +42,6 @@ app.controller("mainController", function ($scope, $http, $rootScope) {
     };
     $scope.findAll();
 
-    $scope.tours = $rootScope.toursfirst
-    // Sắp xếp mảng tours theo thuộc tính view giảm dần
-    $scope.tours.sort(function (a, b) {
-        return b.views - a.views;
-    });
 
-    // Lấy ra 6 phần tử đầu tiên của mảng đã sắp xếp
-    $scope.tourOutstanding = $scope.tours.slice(0, 6);
     $scope.weather()
 });

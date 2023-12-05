@@ -5,6 +5,15 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
     $scope.pay = false
     $scope.id = ''
 
+    $scope.updateUseVoucher = function(voucher){
+        $http.post($rootScope.url + '/api/v1/home/voucher/update/'+voucher)
+        .then(resopnse => {
+            console.log(resopnse.data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
     $scope.random = ""
     let content = document.getElementById('bankcontent')
     function generateRandomText(length) {
@@ -33,10 +42,13 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
                             'Authorization': 'Bearer ' + $rootScope.token
                         }
                     }).then(resopnse => {
+                        if(resopnse.data.voucher!=null){
+                            $scope.updateUseVoucher(resopnse.data.voucher)
+                        }
                         $rootScope.history.push(resopnse.data)
                         $scope.id = resopnse.data.id
                         $http.post($rootScope.url + "/api/v1/payment/save?name=" + $rootScope.fullname + "&id=" + $scope.id + "&money=" + money + "&content=" + contents)
-                            .then(resopnse => {
+                            .then(resopnse => {                            
                                 $scope.pay = true
                                 $location.path("/inforuser/" + $scope.id);
                             }).catch(error => {
