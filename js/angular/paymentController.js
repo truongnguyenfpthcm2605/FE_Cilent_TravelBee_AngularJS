@@ -48,7 +48,7 @@ app.controller("paymentController", function ($scope, $http, $rootScope, $locati
                     $scope.orders.price = $scope.orders.price - $scope.discountAmount;
                })
                .catch(function (error) {
-                    labelvoucher.innerHTML = 'Không tìm thấy voucher'
+                    labelvoucher.innerHTML = error.data.status
                     labelvoucher.style.color = "red"
                     labelvoucher.style.fontSize = "15px"
                     $scope.orders.price = $scope.price
