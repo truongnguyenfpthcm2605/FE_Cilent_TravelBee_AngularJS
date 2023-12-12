@@ -27,7 +27,7 @@ app.controller(
               background: "#fff url(/images/trees.png)",
               backdrop: `
                       rgba(0,0,123,0.4)
-                      url("https://i.pinimg.com/originals/4e/bf/f3/4ebff34bb96f7d7b0c157d64bd116085.gif")
+                      url("https://i.pinimg.com/originals/48/7e/b8/487eb8f04fa06e102e5a683ae72a8b06.gif")
                       left top
                       no-repeat
                     `,
@@ -66,7 +66,7 @@ app.controller(
             background: "#fff url(/images/trees.png)",
             backdrop: `
               rgba(0,0,123,0.4)
-              url("https://i.pinimg.com/originals/4e/bf/f3/4ebff34bb96f7d7b0c157d64bd116085.gif")
+              url("https://i.pinimg.com/originals/48/7e/b8/487eb8f04fa06e102e5a683ae72a8b06.gif")
               left top
               no-repeat
             `,
