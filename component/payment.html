@@ -68,7 +68,7 @@
       </div>
       <div class="form-group">
         <label for="member">{{language.payment_all}}</label>
-        <input type="text" class="form-control" id="member" ng-model="orders.price" disabled placeholder="VND"
+        <input type="text" style="color: red; font-weight: bold; border: none; outline:  none;" class="form-control" id="member" ng-model="orders.price | currency:'VNĐ ':0 " disabled placeholder="VND"
           required>
       </div>
 

@@ -114,7 +114,11 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
         document.body.removeChild(textarea);
 
         // Thông báo hoặc xử lý sau khi sao chép thành công
-        alert('Đã sao chép vào clipboard: ' + bankContent);
+        Swal.fire({
+            icon: "success",
+            title: "Coppy Thành Công !",
+            text: "Xem trong bộ nhớ tạm",
+        });
     }
 
 
