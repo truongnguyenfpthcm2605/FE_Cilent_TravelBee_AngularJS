@@ -1,4 +1,4 @@
 [[plugins]]
   package = "netlify-plugin-facebook-chat"
   [plugins.inputs]
-    appId = "1831512193971526"
+    appId = "162482383617088"
