@@ -23,7 +23,7 @@ app.controller(
         }
         if ($scope.register.verificationCode != "") {
           if ($scope.verificationCode === $scope.code) {
-            // Mã xác nhận chính xác, xử lý tiếp theo ở đây
+           console.log($scope.register)
             $http
               .post($rootScope.url + "/api/v1/auth/register", $scope.register)
               .then((response) => {

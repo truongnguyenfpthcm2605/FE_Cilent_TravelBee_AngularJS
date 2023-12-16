@@ -130,8 +130,10 @@
                     trống</span>
                 </div>
                 <div class="mb-3">
-                  <input type="text" class="form-control" ng-model="register.username" placeholder="{{language.register_us}}"
+
+                    <input type="text" class="form-control" ng-model="register.username" placeholder="{{language.register_us}}"
                     aria-label="Username" aria-describedby="username-addon" name="txtusername" required>
+
                   <span style="color: red; font-size: 15px;"
                     ng-show="formregister.txtusername.$dirty && formregister.txtusername.$error.required">Ussername
                     không được
@@ -158,8 +160,12 @@
                     trống</span>
                 </div>
                 <div class="mb-3">
-                  <input type="password" class="form-control" ng-model="register.password" placeholder="{{language.register_password}}"
+                  <div style="display: flex;">
+                    <input type="password" class="form-control pass" ng-model="register.password" placeholder="{{language.register_password}}"  style="width: 90%; margin-right: 10px;"
                     aria-label="Password" aria-describedby="password-addon" name="txtpassword" required>
+                    <button ng-click="showpass()" class="togglePassword" style="outline: none; border: none; background-color: white;"><i class="fa-solid fa-eye-slash"></i></button>
+
+                  </div>
                   <span style="color: red; font-size: 15px;"
                     ng-show="formregister.txtpassword.$dirty && formregister.txtpassword.$error.required">Password không
                     được
@@ -167,8 +173,12 @@
                     trống</span>
                 </div>
                 <div class="mb-3">
-                  <input type="password" class="form-control" ng-model="confirmpass" placeholder="{{language.register_cfpassword}}"
+                  <div style="display:flex">
+                    <input type="password" class="form-control pass" ng-model="confirmpass" placeholder="{{language.register_cfpassword}}"  style="width: 90%; margin-right: 10px;"
                     aria-label="Confirm Password" aria-describedby="confirmpass-addon" name="txtconfirmpass" required>
+                    <button ng-click="showpass()" class="togglePassword" style="outline: none; border: none; background-color: white;"><i class="fa-solid fa-eye-slash"></i></button>
+
+                  </div>
                   <span style="color: red; font-size: 15px;"
                     ng-show="formregister.txtconfirmpass.$dirty && formregister.txtconfirmpass.$error.required">Confirm
                     Password

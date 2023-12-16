@@ -41,6 +41,9 @@ app.controller("mainController", function ($scope, $http, $rootScope) {
             });
     };
     $scope.findAll();
+    $http.get($rootScope.url + "/api/v1/home/update/access").then(response => {
+    }).catch(error => { })
+
 
 
     $scope.weather()
