@@ -1,15 +1,15 @@
 <div class="row" ng-controller="qrcodepaymentController"
     style="display: flex; flex-flow: column; justify-content: center; align-items: center; background: url('https://traveleverywhere.vn/wp-content/uploads/2022/12/1920px-apartialviewoftobalake-1671949371639-16719493726282924993.webp') no-repeat;">
     <div style="text-align: center; margin: 10%;">
-        <h5 style="color: white; font-weight: 300;">Mở App Ngân hàng, quét mã QRCode và nhập số tiền cần chuyển <span style="color: red; font-weight: bold;">{{ orders.price | currency:'':0 }} VNĐ</span></h5>
+        <h5 style="color: white; font-weight: 300;">Mở App Ngân hàng, quét mã QRCode và nhập số tiền cần chuyển <span style="color: #FF9800; font-weight: bold;">{{ orders.price | currency:'':0 }} VNĐ</span></h5>
         <h5 style="color: white;">
             Nội dung chuyển khoản:
-            <span id="bankcontent" style="font-style: 30px; color: orangered;"></span>
+            <span id="bankcontent" style="font-style: 30px; color:#FF9800"></span>
             <button class="btn btn-success" ng-click="copyToClipboard()"><i class="fa-solid fa-copy"></i>Copy</button>
         </h5>
 
         <img style="border-radius: 10px; width: 300px;"
-            src="https://firebasestorage.googleapis.com/v0/b/travel-bee-e0b59.appspot.com/o/z4970743777315_753d72911f172c705a917d42d42cba3d.jpg?alt=media&token=00e28bfb-f5e9-497c-ad74-b59820363491"
+            src="https://img.vietqr.io/image/970416-10971451-compact.png?amount={{m}}&addInfo={{random}}"
             alt="">
         <h6 class="check" style="color: white; margin-top: 10px;">Thời gian thanh toán của bạn còn lại : <span
                 style="color: red;"> {{check}} </span> giây</h6>

@@ -2,16 +2,17 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
 
 
     $scope.orders = JSON.parse($routeParams.orders)
-    $scope.pay = false
     $scope.id = ''
+    $scope.comlete = false
+    $scope.m = $scope.orders.price.toFixed(2);
 
-    $scope.updateUseVoucher = function(voucher){
-        $http.post($rootScope.url + '/api/v1/home/voucher/update/'+voucher)
-        .then(resopnse => {
-            console.log(resopnse.data)
-        }).catch(error => {
-            console.log(error)
-        })
+    $scope.updateUseVoucher = function (voucher) {
+        $http.post($rootScope.url + '/api/v1/home/voucher/update/' + voucher)
+            .then(resopnse => {
+                console.log(resopnse.data)
+            }).catch(error => {
+                console.log("bug voucher")
+            })
     }
 
     $scope.random = ""
@@ -31,64 +32,72 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
     content.innerHTML = $scope.random
 
 
-    $http.get("https://api.phukhuong79.com/ACB.php?data=MDM2MzU2MTYyOXxLaHVvbmcwNzA5MjAwNUB8MTI5NDAyMzF8MQ==")
-        .then(response => {
-            let money = response.data[0].AMOUNT;
-            let contents = response.data[0].TYPE;
-            if (money == 29000 && contents == "OUT") {
-                $http.post($rootScope.url + "/api/v1/orders/save", $scope.orders,
-                    {
-                        headers: {
-                            'Authorization': 'Bearer ' + $rootScope.token
-                        }
-                    }).then(resopnse => {
-                        if(resopnse.data.voucher!=null){
-                            $scope.updateUseVoucher(resopnse.data.voucher)
-                        }
-                        $rootScope.history.push(resopnse.data)
-                        $scope.id = resopnse.data.id
-                        $http.post($rootScope.url + "/api/v1/payment/save?name=" + $rootScope.fullname + "&id=" + $scope.id + "&money=" + money + "&content=" + contents)
-                            .then(resopnse => {                            
-                                $scope.pay = true
-                                $location.path("/inforuser/" + $scope.id);
-                            }).catch(error => {
-
-                            })
-                    }).catch(error => { })
-            }
-        }).catch(error => {
-
-        })
+    $scope.check = 100;
+    let paymentComplete = false;
 
 
-    $scope.check = 180
     let countdownInterval = setInterval(function () {
+        if (paymentComplete || $scope.comlete) {
+            clearInterval(countdownInterval);
+        }
+
         $scope.$apply(function () {
             $scope.check--;
         });
-
-        if ($scope.pay) {
-            Swal.fire({
-                icon: "success",
-                title: "Thanh toán thành công !",
-                text: "Xem lịch sử vé của bạn",
-            });
-            clearInterval(countdownInterval);
-            
-        }
 
         if ($scope.check <= 0) {
             clearInterval(countdownInterval);
             Swal.fire({
                 icon: "error",
                 title: "Thanh toán thất bại !",
-                text: "kiểm tra lại thông tin thanh toán",
+                text: "Kiểm tra lại thông tin thanh toán",
             });
             $scope.$apply(function () {
                 $location.url("/tour");
             });
         }
+        $http.get("https://api.phukhuong79.com/ACB.php?data=MTA5NzE0NTF8VHJ1b25nMjYwNTAxQHwxMDk3MTQ1MXwx")
+        .then(response => {
+            let money = response.data[0].AMOUNT;
+            let contents = response.data[0].DESCRIPTION.substring(0, 10);
+            if (money == $scope.m && contents == $scope.random) {
+                $http.post($rootScope.url + "/api/v1/orders/save", $scope.orders,
+                    {
+                        headers: {
+                            'Authorization': 'Bearer ' + $rootScope.token
+                        }
+                    }).then(response => {
+                        if (response.data.voucher != null && response.data.voucher != undefined && response.data.voucher != '' && response.data.voucher == 'Không có') {
+                            $scope.updateUseVoucher(response.data.voucher);
+                        }
+                        $rootScope.history.push(response.data);
+                        $scope.id = response.data.id;
+                        paymentComplete = true;
+                        $scope.comlete = true;
+
+                        $http.post($rootScope.url + "/api/v1/payment/save?name=" + $rootScope.fullname + "&id=" + $scope.id + "&money=" + $scope.m + "&content=" + contents)
+                            .then(response => {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Thanh toán thành công !",
+                                    text: "Xem lịch sử vé của bạn",
+                                });
+                                $location.path("/inforuser/" + $scope.id);
+                                clearInterval(countdownInterval);
+                            }).catch(error => {
+                                console.log("bug payment");
+                            });
+
+                    }).catch(error => {
+                        console.log('bug');
+                    });
+            }
+        }).catch(error => {
+            console.log("bug api ");
+        });
+
     }, 1000);
+
 
 
     $scope.copyToClipboard = function () {
