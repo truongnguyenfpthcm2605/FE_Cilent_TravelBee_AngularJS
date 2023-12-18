@@ -23,6 +23,7 @@ app.controller("mainController", function ($scope, $http, $rootScope) {
             .then(response => {
                 $rootScope.toursfirst = response.data;
                 $scope.tours = $rootScope.toursfirst
+                console.log($scope.tours)
 
                 $scope.tours.sort(function (a, b) {
                     return b.views - a.views;
@@ -38,6 +39,7 @@ app.controller("mainController", function ($scope, $http, $rootScope) {
                 });
             })
             .catch(error => {
+                console.log(error)
             });
     };
     $scope.findAll();
