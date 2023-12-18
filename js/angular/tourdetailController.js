@@ -87,7 +87,14 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
       console.error('Error retrieving hotel:', error);
     });
 
-
+    $http.get($rootScope.url + '/api/v1/comment/byTour/' + tourId)
+    .then(function (response) {
+      $scope.comments = response.data;
+      console.log('Dữ liệu comment sau khi xử lý:', $scope.comments);
+    })
+    .catch(function (error) {
+      console.error('Lỗi khi lấy dữ liệu comment:', error);
+    });
 
 
 
@@ -121,4 +128,21 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
 
   $anchorScroll();
 
+// hàm hiện comment
+  $scope.activeTab = 1;
+
+  $scope.setActiveTab = function(tabNumber) {
+    $scope.activeTab = tabNumber;
+  };
+
+  $scope.isActiveTab = function(tabNumber) {
+    return $scope.activeTab === tabNumber;
+  };
+// hàm nhảy ảnh
+$scope.currentIndex = 0;    
+
+$scope.changeImage = function(imageSrc) {
+  $scope.currentIndex = $scope.tour.images.indexOf(imageSrc);
+  $scope.changeMainImage();
+};
 });
