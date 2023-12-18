@@ -1,17 +1,18 @@
-app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $location, $routeParams) {
+app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $location, $routeParams, $timeout) {
 
 
     $scope.orders = JSON.parse($routeParams.orders)
     $scope.id = ''
-    $scope.comlete = false
     $scope.m = $scope.orders.price.toFixed(2);
+    $scope.check = 120;
+
 
     $scope.updateUseVoucher = function (voucher) {
         $http.post($rootScope.url + '/api/v1/home/voucher/update/' + voucher)
             .then(resopnse => {
-                console.log(resopnse.data)
+                paymentComplete = true
             }).catch(error => {
-                console.log("bug voucher")
+                paymentComplete = true
             })
     }
 
@@ -32,71 +33,101 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
     content.innerHTML = $scope.random
 
 
-    $scope.check = 100;
+
+
+    let countdownInterval;
     let paymentComplete = false;
+    let pay = true;
+    let paymentInProgress = false;
 
+    function countdown() {
+        $scope.check--;
 
-    let countdownInterval = setInterval(function () {
-        if (paymentComplete || $scope.comlete) {
-            clearInterval(countdownInterval);
-        }
+        if (!paymentComplete && !paymentInProgress) {
+            paymentInProgress = true;
 
-        $scope.$apply(function () {
-            $scope.check--;
-        });
+            $http.get("https://api.phukhuong79.com/ACB.php?data=MTA5NzE0NTF8VHJ1b25nMjYwNTAxQHwxMDk3MTQ1MXwx")
+                .then(response => {
+                    let money = response.data[0].AMOUNT;
+                    let contents = response.data[0].DESCRIPTION.substring(0, 10);
+                    let type = response.data[0].TYPE;
+                    if (money == $scope.m && type == "IN" && contents == $scope.random) {
+                        if (pay) {
+                            $http.post($rootScope.url + "/api/v1/orders/save", $scope.orders, {
+                                headers: {
+                                    'Authorization': 'Bearer ' + $rootScope.token
+                                }
+                            }).then(response => {
+                                if (response.data.voucher != null && response.data.voucher != undefined && response.data.voucher != '' && response.data.voucher == 'Không có') {
+                                    $scope.updateUseVoucher(response.data.voucher);
+                                }
 
-        if ($scope.check <= 0) {
-            clearInterval(countdownInterval);
-            Swal.fire({
-                icon: "error",
-                title: "Thanh toán thất bại !",
-                text: "Kiểm tra lại thông tin thanh toán",
-            });
-            $scope.$apply(function () {
-                $location.url("/tour");
-            });
-        }
-        $http.get("https://api.phukhuong79.com/ACB.php?data=MTA5NzE0NTF8VHJ1b25nMjYwNTAxQHwxMDk3MTQ1MXwx")
-        .then(response => {
-            let money = response.data[0].AMOUNT;
-            let contents = response.data[0].DESCRIPTION.substring(0, 10);
-            if (money == $scope.m && contents == $scope.random) {
-                $http.post($rootScope.url + "/api/v1/orders/save", $scope.orders,
-                    {
-                        headers: {
-                            'Authorization': 'Bearer ' + $rootScope.token
-                        }
-                    }).then(response => {
-                        if (response.data.voucher != null && response.data.voucher != undefined && response.data.voucher != '' && response.data.voucher == 'Không có') {
-                            $scope.updateUseVoucher(response.data.voucher);
-                        }
-                        $rootScope.history.push(response.data);
-                        $scope.id = response.data.id;
-                        paymentComplete = true;
-                        $scope.comlete = true;
+                                $rootScope.history.push(response.data);
+                                $scope.id = response.data.id;
+                                $http.post($rootScope.url + "/api/v1/payment/save?name=" + $rootScope.fullname + "&id=" + $scope.id + "&money=" + $scope.m + "&content=" + contents)
+                                    .then(response => {
+                                        paymentComplete =true
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "Thanh toán thành công !",
+                                            text: "Kiểm tra lại thông tin vé",
+                                        });
+                                        $location.path("/inforuser/" + $scope.id);
+                                    }).catch(error => {
+                                    });
 
-                        $http.post($rootScope.url + "/api/v1/payment/save?name=" + $rootScope.fullname + "&id=" + $scope.id + "&money=" + $scope.m + "&content=" + contents)
-                            .then(response => {
-                                Swal.fire({
-                                    icon: "success",
-                                    title: "Thanh toán thành công !",
-                                    text: "Xem lịch sử vé của bạn",
-                                });
-                                $location.path("/inforuser/" + $scope.id);
-                                clearInterval(countdownInterval);
                             }).catch(error => {
-                                console.log("bug payment");
+                                handlePaymentFailure();
+                            }).finally(() => {
+                                paymentInProgress = false;
                             });
 
-                    }).catch(error => {
-                        console.log('bug');
-                    });
-            }
-        }).catch(error => {
-            console.log("bug api ");
-        });
+                            pay = false;
+                        }
+                    }
+                })
+                .catch(error => {
+                    handlePaymentFailure();
+                })
+                .finally(() => {
+                    paymentInProgress = false;
+                });
+        }
 
-    }, 1000);
+        if ($scope.check <= 0 && !paymentComplete) {
+            handlePaymentFailure();
+        }
+
+        if (!$scope.$$phase) {
+            $scope.$apply();
+        }
+
+        if (!paymentComplete) {
+            countdownInterval = $timeout(countdown, 1000);
+        }
+    }
+
+    function handlePaymentFailure() {
+        if (countdownInterval) {
+            $timeout.cancel(countdownInterval);
+        }
+        Swal.fire({
+            icon: "error",
+            title: "Thanh toán thất bại !",
+            text: "Kiểm tra lại thông tin thanh toán",
+        });
+        $scope.$apply(function () {
+            $location.url("/tour");
+        });
+    }
+
+    countdown();
+
+
+
+
+
+
 
 
 

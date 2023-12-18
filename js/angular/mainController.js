@@ -19,7 +19,9 @@ app.controller("mainController", function ($scope, $http, $rootScope) {
     }
 
     $scope.findAll = function () {
-        $http.get($rootScope.url + "/api/v1/tour/all")
+        $http.get($rootScope.url + "/api/v1/tour/all"
+          
+        )
             .then(response => {
                 $rootScope.toursfirst = response.data;
                 $scope.tours = $rootScope.toursfirst
