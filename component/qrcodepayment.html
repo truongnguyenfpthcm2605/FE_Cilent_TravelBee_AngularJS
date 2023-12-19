@@ -1,10 +1,10 @@
 <div class="row" ng-controller="qrcodepaymentController"
     style="display: flex; flex-flow: column; justify-content: center; align-items: center; background: url('https://traveleverywhere.vn/wp-content/uploads/2022/12/1920px-apartialviewoftobalake-1671949371639-16719493726282924993.webp') no-repeat;">
     <div style="text-align: center; margin: 10%;">
-        <h5 style="color: white; font-weight: 300;">Mở App Ngân hàng, quét mã QRCode và nhập số tiền cần chuyển <span style="color: #FF9800; font-weight: bold;">{{ orders.price | currency:'':0 }} VNĐ</span></h5>
+        <h5 style="color: white; font-weight: 300;">Mở App Ngân hàng, quét mã QRCode và nhập số tiền cần chuyển <span style="color: #F94C10; font-weight: bold;">{{ orders.price | currency:'':0 }} VNĐ</span></h5>
         <h5 style="color: white;">
             Nội dung chuyển khoản:
-            <span id="bankcontent" style="font-style: 30px; color:#FF9800"></span>
+            <span id="bankcontent" style="font-style: 30px; color:#F94C10"></span>
             <button class="btn btn-success" ng-click="copyToClipboard()"><i class="fa-solid fa-copy"></i>Copy</button>
         </h5>
 

@@ -18,9 +18,9 @@
 </div>
 
 
-<div class="container" ng-controller="paymentController">
+<div class="container" ng-controller="paymentController" style="margin: 0 auto; width: 60%;">
   <div class="form-container">
-    <h2 style="color: orangered;">{{language.payment_payment}}</h2>
+    <h2 style="color: orangered; text-align: center;">{{language.payment_payment}}</h2>
     <form name="formPayment" novalidate>
       <div class="form-group">
         <label for="cccd">{{language.payment_cccd}}</label>
@@ -57,7 +57,7 @@
          </span>
       </div>
       <div class="form-group">
-        <label for="voucher">{{language.payment_voucher}}</label>
+        <label for="voucher">{{language.payment_voucher}} <i style="margin-top: -5px; color: red;" class="fa-solid fa-ticket"></i></label>
         <div class="input-group">
           <input type="text" class="form-control" id="voucher"  ng-model="orders.voucher" placeholder="{{language.payment_intervoucher}}">
           <div class="input-group-append">
@@ -72,7 +72,7 @@
           required>
       </div>
 
-      <button ng-disabled="formPayment.$invalid" ng-click="payment()" style="width: 300px;" class="btn btn-primary btn-submit">{{language.payment_ok}}</button>
+      <button ng-disabled="formPayment.$invalid" ng-click="payment()" style="width: 300px;" class="btn btn-primary btn-submit"><i style="font-size: 18px; margin: -20px 10px 0 0;" class="fa-brands fa-cc-visa"></i>{{language.payment_ok}}</button>
     </form>
   </div>
 </div>

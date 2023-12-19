@@ -16,7 +16,6 @@ app.controller("paymentController", function ($scope, $http, $rootScope, $locati
           if ($scope.orders.member == undefined) {
                $scope.orders.member = 1;
           }
-
           $scope.orders.price = $scope.initialPrice * $scope.orders.member;
           
      };
@@ -26,6 +25,7 @@ app.controller("paymentController", function ($scope, $http, $rootScope, $locati
      $scope.payment = function () {
           if ($scope.orders.voucher == "") {
                $scope.orders.voucher = "Không có"
+
           }
           $scope.orders = JSON.stringify($scope.orders)
           $location.path("/qrcodepayment/"+ $scope.orders)

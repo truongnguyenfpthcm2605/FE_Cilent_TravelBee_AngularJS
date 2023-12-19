@@ -7,6 +7,7 @@ app.controller("qrcodepaymentController", function ($scope, $http, $rootScope, $
     $scope.check = 120;
 
 
+
     $scope.updateUseVoucher = function (voucher) {
         $http.post($rootScope.url + '/api/v1/home/voucher/update/' + voucher)
             .then(resopnse => {
