@@ -90,7 +90,7 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
     });
 
 
-  $http.get($rootScope.url + '/api/v1/comment/all')
+  $http.get($rootScope.url + '/api/v1/comment/tour/' + tourId)
     .then(function (response) {
       $scope.comments = response.data;
       console.log('Dữ liệu comment sau khi xử lý:', $scope.comments);
@@ -141,13 +141,7 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
   $scope.isActiveTab = function (tabNumber) {
     return $scope.activeTab === tabNumber;
   };
-  // hàm nhảy ảnh
-  $scope.currentIndex = 0;
-
-  $scope.changeImage = function (imageSrc) {
-    $scope.currentIndex = $scope.tour.images.indexOf(imageSrc);
-    $scope.changeMainImage();
-  };
+ 
   // đăng comment
   $scope.saveComment = function () {
     let comment = {
@@ -166,9 +160,14 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
     })
       .then(function (response) {
         console.log(response.data)
-        $scope.successMessage = 'Thành công';
+        Swal.fire({
+          icon: 'success',
+          title: "Bàn luận thành công",
+          text: "Cảm ơn bạn đã bàn luận",
+        });
         $scope.contentComment = '';
         loadComments();
+        
       })
       .catch(function (error) {
         console.error('Lỗi khi lấy dữ liệu comment:', error);
@@ -176,7 +175,7 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
 
   }
   function loadComments() {
-    $http.get($rootScope.url + '/api/v1/comment/all')
+    $http.get($rootScope.url + '/api/v1/comment/tour/' + tourId)
       .then(function (response) {
         $scope.comments = response.data;
         console.log('Dữ liệu comment sau khi xử lý:', $scope.comments);
@@ -209,25 +208,34 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
       email: $rootScope.email,
       tourId: tourId
     };
+    console.log($rootScope.email)
 
     if ($rootScope.email === '') {
       $location.path('/login');
+    }else{
+      $http.post($rootScope.url + '/api/v1/like/update', likeDTO, {
+        headers: {
+          'Authorization': 'Bearer ' + $rootScope.token
+        }
+      })
+        .then(function (response) {
+          console.log(response.data);
+          if(response.data.isactive){
+            Swal.fire({
+              icon: 'success',
+              title: "Like thành công",
+              text: "Cảm ơn bạn đã like",
+            });
+          }
+          $scope.getAllLikes(tourId)
+          $scope.isLiked = !$scope.isLiked;
+        })
+        .catch(function (error) {
+          console.error('Lỗi khi cập nhật like:', error);
+        });
     }
 
-    $http.post($rootScope.url + '/api/v1/like/update', likeDTO, {
-      headers: {
-        'Authorization': 'Bearer ' + $rootScope.token
-      }
-    })
-      .then(function (response) {
-        console.log(response.data);
-        $scope.successMessage = 'Thành công';
-        $scope.getAllLikes(tourId)
-        $scope.isLiked = !$scope.isLiked;
-      })
-      .catch(function (error) {
-        console.error('Lỗi khi cập nhật like:', error);
-      });
+   
   };
   
 });
