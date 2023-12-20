@@ -141,7 +141,7 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
   $scope.isActiveTab = function (tabNumber) {
     return $scope.activeTab === tabNumber;
   };
- 
+
   // đăng comment
   $scope.saveComment = function () {
     let comment = {
@@ -167,7 +167,7 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
         });
         $scope.contentComment = '';
         loadComments();
-        
+
       })
       .catch(function (error) {
         console.error('Lỗi khi lấy dữ liệu comment:', error);
@@ -212,7 +212,7 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
 
     if ($rootScope.email === '') {
       $location.path('/login');
-    }else{
+    } else {
       $http.post($rootScope.url + '/api/v1/like/update', likeDTO, {
         headers: {
           'Authorization': 'Bearer ' + $rootScope.token
@@ -220,7 +220,7 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
       })
         .then(function (response) {
           console.log(response.data);
-          if(response.data.isactive){
+          if (response.data.isactive) {
             Swal.fire({
               icon: 'success',
               title: "Like thành công",
@@ -235,7 +235,7 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
         });
     }
 
-   
+
   };
-  
+
 });
