@@ -69,7 +69,17 @@ border-radius: 5px;
 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.reviews-container {
+  height: 350px; /* Đặt chiều cao tối đa cho container */
+  overflow-y: auto; /* Cho phép cuộn dọc khi nội dung vượt quá kích thước container */
+}
+.fa-heart {
+  color: gray;
+}
 
-
+/* Màu sắc trái tim đã like */
+.fa-heart.liked {
+  color: red;
+}
 
 
