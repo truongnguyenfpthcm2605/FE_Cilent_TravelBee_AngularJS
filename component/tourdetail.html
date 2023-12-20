@@ -8,7 +8,8 @@
           <span class="subheading">{{language.home_welcome}}</span>
           <h1 class="mb-4">{{language.home_stt}}</h1>
           <p class="caps">{{language.home_wc}}</p>
-          <p class="mb-4">{{ today.name}}, {{today.location}}, <span style="color: rgb(141, 141, 227);">{{today.status}}</span> , {{today.C}} độ C </p>
+          <p class="mb-4">{{ today.name}}, {{today.location}}, <span
+              style="color: rgb(141, 141, 227);">{{today.status}}</span> , {{today.C}} độ C </p>
         </div>
         <a data-toggle="modal" data-target="#exampleModal"
           class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
@@ -56,14 +57,9 @@
                 <div class="product-details">
                   <h2 class="product-name">{{tour.title}}</h2>
                   <div>
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <a class="review-link" href="#">10 Đánh giá | Thêm đánh giá</a>
+                    <i class="fa fa-heart" ng-class="{'liked': isLiked}"ng-click="updateLike()"></i>
+                    
+                    <div style="display: inline;">{{likeCount}} likes</div>
                   </div>
                   <div>
                     <h3 class="product-price">{{tour.price}} <del class="product-old-price">{{tour.price * 1.2}} </del>
@@ -73,11 +69,13 @@
                   <p>{{ tour.description }}</p>
 
                   <br>
-                  <select ng-if="plantour && plantour.length > 0" class="form-control" id="" style="margin-bottom: 10px; outline: none; border-radius: 10px;" name="selectedPlantour">
-                    <option  ng-repeat="item in plantour" value="{{item.id}}">{{item.stardate | date:'dd/MM/yyyy'}} - {{item.enddate | date:'dd/MM/yyyy'}}</option>
-                </select>
-                
-                
+                  <select ng-if="plantour && plantour.length > 0" class="form-control" id=""
+                    style="margin-bottom: 10px; outline: none; border-radius: 10px;" name="selectedPlantour">
+                    <option ng-repeat="item in plantour" value="{{item.id}}">{{item.stardate | date:'dd/MM/yyyy'}} -
+                      {{item.enddate | date:'dd/MM/yyyy'}}</option>
+                  </select>
+
+
 
 
                   <div class="add-to-cart">
@@ -86,8 +84,7 @@
                   </div>
 
                   <ul class="product-btns">
-                    <li><a href="#"><i class="fa fa-heart-o"></i> Thêm vào yêu thích</a></li>
-                    <li><a href="#"><i class="fa fa-exchange"></i> so sánh tour</a></li>
+                   
                   </ul>
 
                   <ul class="product-links">
@@ -165,8 +162,8 @@
           </div>
         </div>
       </div>
-     
-    </div> 
+
+    </div>
 
 
 
@@ -180,8 +177,9 @@
       <div id="product-tab">
         <!-- product tab nav -->
         <ul class="tab-nav">
-          <li ng-class="{ 'active': isActiveTab(1) }"><a data-toggle="tab" href="" ng-click="setActiveTab(1)">Description</a></li>
-          
+          <li ng-class="{ 'active': isActiveTab(1) }"><a data-toggle="tab" href=""
+              ng-click="setActiveTab(1)">Description</a></li>
+
         </ul>
         <!-- /product tab nav -->
 
@@ -199,54 +197,54 @@
             <div class="row">
               <!-- Rating -->
               <div class="col-md-3">
-                
+
               </div>
               <!-- /Rating -->
 
               <!-- Reviews -->
-              <div class="col-md-5">
+              <div class="col-md-6">
                 <div id="reviews" class="reviews-container">
                   <ul class="reviews" ng-repeat="cmt in comments">
                     <li>
                       <div class="review-heading">
                         <h5 class="name"> {{cmt.account.fullname}}</h5>
                         <p class="date">{{cmt.createdate}}</p>
-                        
+
                       </div>
                       <div class="review-body">
                         <p>{{cmt.content}}</p>
                       </div>
                     </li>
-                     <hr>
+                    <hr>
                   </ul>
-                  
+
                 </div>
-               
+
               </div>
               <!-- /Reviews -->
-
               <!-- Review Form -->
-              <div class="col-md-2">
-                <div id="review-form">
-                  <form class="review-form">
-                    <input class="input" type="text" placeholder="Your Name">
-                    <input class="input" type="email" placeholder="Your Email">
-                    <textarea class="input" placeholder="Your Review"></textarea>
-                    <div class="input-rating">
-                      <span>Your Rating: </span>
-                      <div class="stars">
-                        <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
-                        <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
-                        <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
-                        <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
-                        <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+              <div>
+                <div class="col-md-12">
+                  <div id="review-form">
+                    <form class="review-form">
+                      <input class="input" ng-model="contentComment" placeholder="Your Review"></input>
+                      <div class="input-rating">
+                        <!-- <span>Your Rating: </span>
+                        <div class="stars">
+                          <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
+                          <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
+                          <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
+                          <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
+                          <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+                        </div> -->
                       </div>
-                    </div>
-                    <button class="primary-btn">Submit</button>
-                  </form>
+                      <button class="primary-btn" ng-click="saveComment()">Submit</button>
+                    </form>
+                  </div>
                 </div>
               </div>
               <!-- /Review Form -->
+
             </div>
           </div>
           <!-- /tab3  -->
@@ -277,8 +275,8 @@
 
       <!-- product -->
       <div class="col-md-3 col-xs-6" ng-repeat="tour in toursfirst" ng-if="$index < 4">
-        <div class="product" >
-          <div class="product-img" >
+        <div class="product">
+          <div class="product-img">
             <img ng-src="{{ tour.images[3] }}" alt="" style="height: 170px;">
             <div class="product-label">
               <span class="sale">-10%</span>
@@ -298,15 +296,16 @@
               <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
             </div>
           </div>
-          <div class="add-to-cart" >
-            <a href="#!tourdetail/{{tour.id}}"><button class="add-to-cart-btn"  > <i class="fa fa-shopping-cart"></i> Xem tour</button></a>
-            
+          <div class="add-to-cart">
+            <a href="#!tourdetail/{{tour.id}}"><button class="add-to-cart-btn"> <i class="fa fa-shopping-cart"></i> Xem
+                tour</button></a>
+
           </div>
         </div>
       </div>
       <!-- /product -->
 
-     
+
 
     </div>
     <!-- /row -->

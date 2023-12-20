@@ -5,19 +5,21 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
 
   let tourId = JSON.parse($routeParams.tourId);
 
-  
-  
+  $scope.contentComment = ''
+  $scope.likeCount = 0;
+
+
   $scope.payment = function () {
     let selectedPlantour = document.getElementsByName('selectedPlantour')[0];
     let selectedValue = selectedPlantour.value;
-    
+
     if ($rootScope.email == '') {
       $location.url("/login");
     } else {
       $location.path("/payment/" + selectedValue + "/" + $scope.tour.price);
     }
   };
-  
+
 
   $http.get($rootScope.url + '/api/v1/tour/view/' + tourId)
     .then(function (response) {
@@ -87,7 +89,8 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
       console.error('Error retrieving hotel:', error);
     });
 
-    $http.get($rootScope.url + '/api/v1/comment/byTour/' + tourId)
+
+  $http.get($rootScope.url + '/api/v1/comment/all')
     .then(function (response) {
       $scope.comments = response.data;
       console.log('Dữ liệu comment sau khi xử lý:', $scope.comments);
@@ -128,21 +131,103 @@ app.controller('TourDetailController', function ($scope, $rootScope, $http, $rou
 
   $anchorScroll();
 
-// hàm hiện comment
+  // hàm hiện comment
   $scope.activeTab = 1;
 
-  $scope.setActiveTab = function(tabNumber) {
+  $scope.setActiveTab = function (tabNumber) {
     $scope.activeTab = tabNumber;
   };
 
-  $scope.isActiveTab = function(tabNumber) {
+  $scope.isActiveTab = function (tabNumber) {
     return $scope.activeTab === tabNumber;
   };
-// hàm nhảy ảnh
-$scope.currentIndex = 0;    
+  // hàm nhảy ảnh
+  $scope.currentIndex = 0;
 
-$scope.changeImage = function(imageSrc) {
-  $scope.currentIndex = $scope.tour.images.indexOf(imageSrc);
-  $scope.changeMainImage();
-};
+  $scope.changeImage = function (imageSrc) {
+    $scope.currentIndex = $scope.tour.images.indexOf(imageSrc);
+    $scope.changeMainImage();
+  };
+  // đăng comment
+  $scope.saveComment = function () {
+    let comment = {
+      content: $scope.contentComment,
+      image: 'N/a',
+      email: $rootScope.email,
+      tourId: tourId
+    }
+    if ($rootScope.email == '') {
+      $location.path('/login')
+    }
+    $http.post($rootScope.url + '/api/v1/comment/save', comment, {
+      headers: {
+        'Authorization': 'Bearer ' + $rootScope.token
+      }
+    })
+      .then(function (response) {
+        console.log(response.data)
+        $scope.successMessage = 'Thành công';
+        $scope.contentComment = '';
+        loadComments();
+      })
+      .catch(function (error) {
+        console.error('Lỗi khi lấy dữ liệu comment:', error);
+      });
+
+  }
+  function loadComments() {
+    $http.get($rootScope.url + '/api/v1/comment/all')
+      .then(function (response) {
+        $scope.comments = response.data;
+        console.log('Dữ liệu comment sau khi xử lý:', $scope.comments);
+      })
+      .catch(function (error) {
+        console.error('Lỗi khi lấy dữ liệu comment:', error);
+      });
+  }
+
+  //like tour
+  // hiển thị like
+  $scope.getAllLikes = function (tourId) {
+    $http.get($rootScope.url + '/api/v1/like/all/' + tourId)
+      .then(function (response) {
+        $scope.likes = response.data;
+        console.log('Dữ liệu like sau khi xử lý:', $scope.likes);
+        $scope.likeCount = response.data; // Cập nhật số lượng like
+        console.log('Dữ liệu like sau khi xử lý:', $scope.likeCount);
+
+      })
+      .catch(function (error) {
+        console.error('Lỗi khi tải dữ liệu like:', error);
+      });
+  };
+  $scope.getAllLikes(tourId)
+  // update like
+  $scope.isLiked = false;
+  $scope.updateLike = function () {
+    var likeDTO = {
+      email: $rootScope.email,
+      tourId: tourId
+    };
+
+    if ($rootScope.email === '') {
+      $location.path('/login');
+    }
+
+    $http.post($rootScope.url + '/api/v1/like/update', likeDTO, {
+      headers: {
+        'Authorization': 'Bearer ' + $rootScope.token
+      }
+    })
+      .then(function (response) {
+        console.log(response.data);
+        $scope.successMessage = 'Thành công';
+        $scope.getAllLikes(tourId)
+        $scope.isLiked = !$scope.isLiked;
+      })
+      .catch(function (error) {
+        console.error('Lỗi khi cập nhật like:', error);
+      });
+  };
+  
 });
